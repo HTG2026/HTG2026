@@ -7,7 +7,31 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        teal: "#00B5B2",
+        orange: "#FF5A1F",
+        gold: "#FFB800",
+        htgreen: "#4ADE80",
+        htdark: "#07090B",
+        htcard: "#0F1215",
+        htcard2: "#141820",
+      },
+      fontFamily: {
+        display: ["Bebas Neue", "sans-serif"],
+        serif: ["Fraunces", "serif"],
+        body: ["Plus Jakarta Sans", "sans-serif"],
+      },
+      animation: {
+        tick: "tick 28s linear infinite",
+      },
+      keyframes: {
+        tick: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+    },
   },
   plugins: [],
 } satisfies Config;

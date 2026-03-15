@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Happy Traveler",
-  description: "Your guide to exploring Central Florida: Orlando, Cocoa, and Tampa",
+  title: "The Happy Traveler — Central Florida's Insider Guide",
+  description: "Your guide to exploring Central Florida: Orlando, Cocoa, and Tampa. Real park hacks, hidden spots, and local knowledge.",
 };
 
 export default function RootLayout({
@@ -14,27 +15,62 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col">
-        <header className="border-b border-gray-200 dark:border-gray-800">
-          <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
-            <Link href="/" className="text-xl font-bold text-blue-600 dark:text-blue-400">
-              Happy Traveler
+      <body className="antialiased min-h-screen flex flex-col font-body bg-htdark text-white">
+        <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 bg-[rgba(7,9,11,.95)] backdrop-blur-xl border-b border-white/[0.08]">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Image src="/logo.png" alt="The Happy Traveler" width={140} height={40} className="h-9 w-auto" />
+          </Link>
+          <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
+            <Link href="/" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Home
             </Link>
-            <ul className="flex flex-wrap gap-6">
-              <li><Link href="/" className="hover:underline">Home</Link></li>
-              <li><Link href="/destinations" className="hover:underline">Destinations</Link></li>
-              <li><Link href="/blog" className="hover:underline">Blog</Link></li>
-              <li><Link href="/flight-tracker" className="hover:underline">Flight Tracker</Link></li>
-              <li><Link href="/contact" className="hover:underline">Contact</Link></li>
-            </ul>
+            <Link href="/explore" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Explore
+            </Link>
+            <Link href="/theme-parks" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Theme Parks
+            </Link>
+            <Link href="/tips-guides" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Tips & Guides
+            </Link>
+            <Link href="/plan-my-day" className="text-[.78rem] font-medium text-teal border border-teal/35 hover:bg-teal/10 px-3 py-1.5 rounded-full transition-all">
+              Plan My Day ✨
+            </Link>
+            <Link href="/flight-tracker" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Flight Tracker
+            </Link>
+            <Link href="/contact" className="text-[.78rem] font-bold bg-orange text-white hover:bg-[#e04510] px-3 py-1.5 rounded-full transition-all">
+              Contact
+            </Link>
           </nav>
         </header>
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+        <main className="flex-1 pt-16 sm:pt-20">
           {children}
         </main>
-        <footer className="border-t border-gray-200 dark:border-gray-800 py-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Happy Traveler. All rights reserved.
+        <footer className="bg-[#040607] border-t border-[rgba(255,255,255,.07)] py-12 px-6 sm:px-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div>
+            <div className="mb-2">
+              <Image src="/logo.png" alt="The Happy Traveler" width={120} height={34} className="h-8 w-auto" />
+            </div>
+            <p className="text-[.76rem] text-white/30 leading-relaxed">
+              Central Florida&apos;s insider guide. Orlando, Cocoa, Tampa. Real hacks, hidden spots, local knowledge.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-white/25 mb-3">Explore</h4>
+            <Link href="/explore" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Local Businesses</Link>
+            <Link href="/theme-parks" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Theme Parks</Link>
+            <Link href="/tips-guides" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Tips & Guides</Link>
+            <Link href="/flight-tracker" className="block text-[.76rem] text-white/35 hover:text-teal transition-colors">Flight Tracker</Link>
+          </div>
+          <div>
+            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-white/25 mb-3">Connect</h4>
+            <Link href="/contact" className="block text-[.76rem] text-white/35 hover:text-teal transition-colors">Contact</Link>
+          </div>
         </footer>
+        <div className="bg-[#040607] border-t border-white/5 py-3 px-6 sm:px-12 flex justify-between items-center">
+          <span className="text-[.66rem] text-white/20">© {new Date().getFullYear()} The Happy Traveler. All rights reserved.</span>
+        </div>
       </body>
     </html>
   );

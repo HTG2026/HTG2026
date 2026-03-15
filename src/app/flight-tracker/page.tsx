@@ -1,30 +1,33 @@
 export default function FlightTracker() {
   return (
-    <div>
-      <h1 className="text-4xl font-bold mb-4">Flight Tracker</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-        Enter a flight number or route to track status in real time.
+    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto">
+      <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">Track</div>
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4">
+        <span className="text-teal">Flight Tracker</span>
+      </h1>
+      <p className="text-white/50 text-lg max-w-xl mb-12">
+        Enter a flight number or route to track status in real time. MCO, TPA, and nearby airports.
       </p>
       <div className="max-w-md space-y-4">
         <div>
-          <label htmlFor="flight" className="block text-sm font-medium mb-2">
+          <label htmlFor="flight" className="block text-sm font-medium mb-2 text-white/70">
             Flight number (e.g. AA 123)
           </label>
           <input
             id="flight"
             type="text"
             placeholder="AA 123"
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-htcard text-white placeholder:text-white/25"
           />
         </div>
         <button
           type="button"
-          className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+          className="px-6 py-3 rounded-xl bg-orange text-white font-bold hover:bg-[#e04510] transition-colors"
         >
           Track flight
         </button>
       </div>
-      <p className="mt-6 text-sm text-gray-500">
+      <p className="mt-6 text-sm text-white/40">
         Flight tracking results will appear here. Connect to a flight API to enable live data.
       </p>
     </div>

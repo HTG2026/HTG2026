@@ -8,8 +8,16 @@ import {
 } from "@/data/itinerary-data";
 
 type Group = "solo" | "couple" | "squad" | "family";
-type Vibe = "parks" | "local" | "mix" | "nightlife";
+type Vibe = "parks" | "local" | "mix" | "nightlife" | "shows";
 type Budget = "under50" | "50-150" | "150-300" | "300plus";
+
+export interface PlannerPrefs {
+  kidsAges?: string;
+  duration?: string;
+  style?: string;
+  dietary?: string;
+  mobility?: string;
+}
 
 function pickRandom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -28,9 +36,13 @@ function pickFamilyFriendly<T extends { familyFriendly?: boolean }>(arr: T[], fa
 export function generateItinerary(
   group: Group,
   vibe: Vibe,
-  budget: Budget
+  budget: Budget,
+  prefs?: PlannerPrefs
 ): { title: string; budgetEst: string; stops: ItineraryStop[]; proTip: string } {
   const isFamily = group === "family";
+  const hasToddlers = prefs?.kidsAges === "toddlers";
+  const preferLessWalking = prefs?.mobility === "moderate" || prefs?.mobility === "accessible";
+  const isHalfDay = prefs?.duration === "half";
   const stops: ItineraryStop[] = [];
 
   // Budget estimate
@@ -41,7 +53,15 @@ export function generateItinerary(
     "300plus": "Est $250+ per person",
   };
 
-  if (vibe === "parks") {
+  if (vibe === "shows") {
+    const dining = pickByBudget(DINING_OPTIONS, budget)[0] || DINING_OPTIONS[2];
+    stops.push(
+      { time: "10:00 AM", emoji: "☕", name: "Lineage Coffee", detail: "Single-origin · Winter Park", area: "Winter Park", priceHint: "$", bookUrl: "https://www.lineagecoffee.com/" },
+      { time: "12:00 PM", emoji: dining.emoji, name: dining.name, detail: dining.detail, area: dining.area, priceHint: dining.price, bookUrl: (dining as { bookUrl?: string }).bookUrl },
+      { time: "2:00 PM", emoji: "🎭", name: "Dr Phillips Center or Kia Center", detail: "Broadway, concerts, Magic games. See Live Shows for dates & tickets.", area: "Downtown", bookUrl: "/shows" },
+      { time: "6:30 PM", emoji: "🍽️", name: "Dinner near venue", detail: "Kres Chophouse or The Strand — both walkable to Dr Phillips.", area: "Downtown", priceHint: "$$", bookUrl: "https://www.opentable.com/kres-chophouse" }
+    );
+  } else if (vibe === "parks") {
     // Theme park day
     const park1 = pickRandom(THEME_PARK_OPTIONS.filter((p) => p.park.includes("Magic") || p.park.includes("Epcot")));
     const park2 = pickRandom(THEME_PARK_OPTIONS.filter((p) => p.park.includes("Universal") || p.park.includes("Islands")));
@@ -106,6 +126,7 @@ export function generateItinerary(
     local: "Local Orlando Day",
     mix: "Mix of Parks & Local",
     nightlife: "Orlando Nightlife",
+    shows: "Live Shows & Culture",
   };
 
   const groupSuffix = group === "family" ? " (Family)" : group === "couple" ? " (Couple)" : "";

@@ -1,5 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1523531294919-e4d64d4c2a53?w=600&q=80";
 
 const GUIDES = [
   {
@@ -42,45 +47,52 @@ const GUIDES = [
 
 export default function TipsGuides() {
   return (
-    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto">
+    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto bg-htbg">
       <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">Vacation Tips</div>
-      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4">
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4 text-htdark">
         <span className="text-teal">Tips & Guides</span>
       </h1>
-      <p className="text-white/50 text-lg max-w-xl mb-12">
+      <p className="text-slate-600 text-lg max-w-xl mb-12">
         How to vacation in Central Florida — Orlando focus, surrounding areas like Cocoa Beach, and local knowledge.
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2">
         {GUIDES.map((guide, i) => (
-          <Link
-            key={i}
-            href="#"
-            className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 transition-all"
-          >
-            <div className="relative aspect-[16/9] overflow-hidden">
-              <Image
-                src={guide.image}
-                alt={guide.title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-              <div className="absolute top-2 left-2">
-                <span className="rounded-md bg-orange/90 px-2 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">
-                  {guide.tag}
-                </span>
-              </div>
-            </div>
-            <div className="p-5">
-              <h2 className="text-lg font-semibold mb-2 group-hover:text-teal transition-colors">
-                {guide.title}
-              </h2>
-              <p className="text-white/50 text-sm leading-relaxed line-clamp-2">{guide.desc}</p>
-            </div>
-          </Link>
+          <GuideCard key={i} guide={guide} />
         ))}
       </div>
     </div>
+  );
+}
+
+function GuideCard({ guide }: { guide: (typeof GUIDES)[0] }) {
+  const [imgSrc, setImgSrc] = useState(guide.image);
+  return (
+    <Link
+      href="#"
+      className="group block overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-teal/30 hover:bg-teal/5 transition-all shadow-sm"
+    >
+      <div className="relative aspect-[16/9] overflow-hidden">
+        <Image
+          src={imgSrc}
+          alt={guide.title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, 50vw"
+          onError={() => setImgSrc(FALLBACK_IMAGE)}
+        />
+        <div className="absolute top-2 left-2">
+          <span className="rounded-md bg-orange/90 px-2 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">
+            {guide.tag}
+          </span>
+        </div>
+      </div>
+      <div className="p-5">
+        <h2 className="text-lg font-semibold mb-2 group-hover:text-teal transition-colors">
+          {guide.title}
+        </h2>
+        <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">{guide.desc}</p>
+      </div>
+    </Link>
   );
 }

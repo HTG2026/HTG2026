@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 export default function GlobalError({
   error,
   reset,
@@ -7,17 +9,41 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const isChunkError =
+    error.name === "ChunkLoadError" ||
+    error.message?.includes("Loading chunk") ||
+    error.message?.includes("Loading CSS chunk");
+
+  useEffect(() => {
+    if (isChunkError && typeof window !== "undefined") {
+      const retried = sessionStorage.getItem("chunk-load-retry") === "1";
+      if (!retried) {
+        sessionStorage.setItem("chunk-load-retry", "1");
+        window.location.reload();
+        return;
+      }
+      sessionStorage.removeItem("chunk-load-retry");
+    }
+  }, [isChunkError]);
+
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col items-center justify-center bg-[#07090B] text-white font-sans p-6">
-        <h1 className="text-xl font-bold mb-4">Something went wrong</h1>
-        <p className="text-white/60 mb-6 text-center max-w-md">{error.message}</p>
-        <button
-          onClick={reset}
-          className="px-6 py-2 rounded-lg bg-[#00B5B2] text-white font-semibold hover:bg-[#009a97] transition-colors"
-        >
-          Try again
-        </button>
+      <body className="antialiased min-h-screen flex flex-col items-center justify-center bg-htbg text-htdark font-sans p-6">
+        <div className="max-w-md text-center space-y-4">
+          <h1 className="text-xl font-bold">Something went wrong</h1>
+          <p className="text-white/70 text-sm">
+            {isChunkError
+              ? "A cached version may be outdated. Try refreshing."
+              : "An unexpected error occurred."}
+          </p>
+          <button
+            type="button"
+            onClick={() => (isChunkError ? window.location.reload() : reset())}
+            className="px-6 py-3 rounded-full bg-[#00B5B2] text-white font-semibold hover:opacity-90 transition-opacity"
+          >
+            {isChunkError ? "Refresh page" : "Try again"}
+          </button>
+        </div>
       </body>
     </html>
   );

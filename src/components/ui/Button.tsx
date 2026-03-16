@@ -20,9 +20,9 @@ const variantClasses: Record<Variant, string> = {
   primary:
     "bg-teal text-white hover:bg-teal/90 active:bg-teal/80 border-teal focus-visible:ring-teal",
   secondary:
-    "bg-white/10 text-white hover:bg-white/15 border-white/20 focus-visible:ring-white/30",
+    "bg-slate-100 text-htdark hover:bg-slate-200 border-slate-200 focus-visible:ring-slate-300",
   ghost:
-    "bg-transparent text-white/70 hover:bg-white/10 hover:text-white border-transparent focus-visible:ring-white/20",
+    "bg-transparent text-slate-600 hover:bg-slate-100 hover:text-htdark border-transparent focus-visible:ring-slate-200",
   danger:
     "bg-red/20 text-red hover:bg-red/30 border-red/40 focus-visible:ring-red/50",
 };
@@ -44,7 +44,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-semibold border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-htdark disabled:opacity-50 disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center font-semibold border transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed";
 
   const classes = `${base} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 

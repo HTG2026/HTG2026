@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 
 const FALLBACK_URLS = [
@@ -10,29 +10,47 @@ const FALLBACK_URLS = [
   "https://www.tiktok.com/@thatchipperbunch/video/7444188965017554206",
 ];
 
+function renderTikTokEmbeds(container: HTMLElement | null) {
+  if (!container) return;
+  const tiktok = (window as unknown as { tiktok?: { embed?: { lib?: { render: (el?: HTMLElement) => void } } } }).tiktok;
+  if (tiktok?.embed?.lib?.render) {
+    tiktok.embed.lib.render(container);
+  }
+}
+
 export default function TikTokCarousel() {
   const [urls, setUrls] = useState<string[]>(FALLBACK_URLS);
-  const [loaded, setLoaded] = useState(false);
+  const [embedReady, setEmbedReady] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/tiktok-feed")
       .then((res) => res.json())
       .then((data) => {
         if (data?.urls?.length) setUrls(data.urls);
-        setLoaded(true);
       })
-      .catch(() => setLoaded(true));
+      .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (!embedReady || urls.length === 0) return;
+    const key = urls.join("|");
+    if (key === FALLBACK_URLS.join("|")) return;
+    const id = requestAnimationFrame(() => {
+      renderTikTokEmbeds(containerRef.current);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [embedReady, urls]);
+
   return (
-    <section className="py-16 px-6 sm:px-12 bg-htdark">
+      <section className="py-16 px-6 sm:px-12 bg-htcard2">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
               TikTok · #OrlandoFlorida
             </div>
-            <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight">
+            <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight text-htdark">
               Hacks going <span className="not-italic">viral</span>
             </h2>
           </div>
@@ -40,13 +58,13 @@ export default function TikTokCarousel() {
             href="https://www.tiktok.com/search?q=orlando+florida"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[.76rem] font-semibold text-white/40 hover:text-teal transition-colors hidden sm:block"
+            className="text-[.76rem] font-semibold text-slate-600 hover:text-teal transition-colors hidden sm:block"
           >
             Watch on TikTok →
           </a>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 scroll-snap-x snap-mandatory">
+        <div ref={containerRef} className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 scroll-snap-x snap-mandatory">
           {urls.map((url, i) => (
             <div
               key={`${url}-${i}`}
@@ -69,7 +87,11 @@ export default function TikTokCarousel() {
         </div>
       </div>
 
-      <Script src="https://www.tiktok.com/embed.js" strategy="lazyOnload" />
+      <Script
+        src="https://www.tiktok.com/embed.js"
+        strategy="lazyOnload"
+        onLoad={() => setEmbedReady(true)}
+      />
     </section>
   );
 }

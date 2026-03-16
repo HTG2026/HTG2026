@@ -40,12 +40,12 @@ export default function ThemeParks() {
   const park = PARKS[active];
 
   return (
-    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto">
+    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto bg-htbg">
       <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">Best Practices</div>
-      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4">
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4 text-htdark">
         <span className="text-teal">Theme Parks</span>
       </h1>
-      <p className="text-white/50 text-lg max-w-xl mb-12">
+      <p className="text-slate-600 text-lg max-w-xl mb-12">
         Disney, Universal, SeaWorld, and Busch Gardens — hacks, tips, and how to make the most of your day.
       </p>
 
@@ -58,7 +58,7 @@ export default function ThemeParks() {
             className={`px-4 py-2 rounded-full text-[.74rem] font-semibold transition-all ${
               active === key
                 ? "bg-orange border-orange text-white"
-                : "bg-htcard border border-white/10 text-white/50 hover:border-teal/30 hover:text-teal"
+                : "bg-white border border-slate-200 text-slate-600 hover:border-teal/30 hover:text-teal shadow-sm"
             }`}
           >
             {PARKS[key].emoji} {PARKS[key].name}
@@ -67,22 +67,22 @@ export default function ThemeParks() {
       </div>
 
       {/* Active park content */}
-      <div className="p-6 rounded-xl border border-white/10 bg-htcard/50">
+      <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-3xl">{park.emoji}</span>
           <div>
             <h2 className="text-xl font-semibold text-teal">{park.name}</h2>
-            <p className="text-white/40 text-sm">{park.parks}</p>
+            <p className="text-slate-600 text-sm">{park.parks}</p>
           </div>
         </div>
         <div className="space-y-6 mt-8">
           {park.tips.map((tip, i) => (
-            <div key={i} className="p-4 rounded-xl border border-white/5 hover:border-orange/20 transition-colors">
+            <div key={i} className="p-4 rounded-xl border border-slate-200 hover:border-orange/30 transition-colors">
               <div className="flex gap-3">
                 <span className="text-xl">{tip.icon}</span>
                 <div>
-                  <h3 className="font-semibold mb-1">{tip.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{tip.body}</p>
+                  <h3 className="font-semibold mb-1 text-htdark">{tip.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{tip.body}</p>
                 </div>
               </div>
             </div>

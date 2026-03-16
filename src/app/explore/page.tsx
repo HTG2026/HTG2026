@@ -77,8 +77,8 @@ export default function Explore() {
   return (
     <div className="min-h-screen">
       {/* Trust badges */}
-      <div className="py-3 px-6 sm:px-12 bg-white/[0.02] border-b border-white/5">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 text-[.7rem] text-white/40">
+      <div className="py-3 px-6 sm:px-12 bg-htcard2 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 text-[.7rem] text-slate-500">
           <span>Magical Dining® partners</span>
           <span>·</span>
           <span>Eventbrite events</span>
@@ -88,31 +88,31 @@ export default function Explore() {
       </div>
 
       {/* Header */}
-      <div className="py-12 px-6 sm:px-12 border-b border-white/10">
+      <div className="py-12 px-6 sm:px-12 border-b border-slate-200 bg-htbg">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange">
               Central Florida
             </span>
-            <span className="text-[.6rem] text-white/30">·</span>
-            <span className="text-[.6rem] text-gold font-semibold">Magical Dining · Eventbrite</span>
+            <span className="text-[.6rem] text-slate-400">·</span>
+            <span className="text-[.6rem] text-amber-700 font-semibold">Magical Dining · Eventbrite</span>
           </div>
-          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4 text-htdark">
             <span className="text-teal">Explore</span>
           </h1>
-          <p className="text-white/50 text-lg max-w-xl mb-8">
+          <p className="text-slate-600 text-lg max-w-xl mb-8">
             Restaurants, experiences, museums, bars, and events — curated for tourists by locals. Orlando, Cocoa, Tampa & beyond.
           </p>
 
           <div className="max-w-2xl">
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-lg">🔍</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
               <input
                 type="text"
                 placeholder="Search restaurants, experiences, neighborhoods, events…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-white/5 border border-white/15 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-white/35 text-[.95rem] outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-all"
+                className="w-full bg-white border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 text-htdark placeholder:text-slate-400 text-[.95rem] outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-all shadow-sm"
               />
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function Explore() {
       </div>
 
       {/* Sticky filter bar */}
-      <div className="sticky top-16 z-50 py-3 px-6 sm:px-12 bg-htdark/95 backdrop-blur-md border-b border-white/10">
+      <div className="sticky top-16 z-50 py-3 px-6 sm:px-12 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1 sm:pb-0">
             {CATEGORIES.map((cat) => (
@@ -130,7 +130,7 @@ export default function Explore() {
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[.78rem] font-semibold whitespace-nowrap shrink-0 transition-all ${
                   filter === cat.id
                     ? "bg-teal text-white border border-teal"
-                    : "bg-htcard border border-white/10 text-white/55 hover:border-teal/40 hover:text-teal"
+                    : "bg-white border border-slate-200 text-slate-600 hover:border-teal/40 hover:text-teal shadow-sm"
                 }`}
               >
                 {cat.emoji} {cat.label}
@@ -139,11 +139,11 @@ export default function Explore() {
           </div>
           {!isEvents && (
             <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[.7rem] text-white/40 font-medium">Sort by</span>
+              <span className="text-[.7rem] text-slate-500 font-medium">Sort by</span>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="bg-htcard border border-white/10 rounded-lg py-2 px-3 text-[.8rem] font-medium text-white outline-none focus:border-teal/50 cursor-pointer"
+                className="bg-white border border-slate-200 rounded-lg py-2 px-3 text-[.8rem] font-medium text-htdark outline-none focus:border-teal/50 cursor-pointer shadow-sm"
               >
                 {SORT_OPTIONS.map((opt) => (
                   <option key={opt.id} value={opt.id}>
@@ -157,9 +157,9 @@ export default function Explore() {
       </div>
 
       {/* Results */}
-      <div className="py-10 px-6 sm:px-12">
+      <div className="py-10 px-6 sm:px-12 bg-htbg">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[.8rem] text-white/45 mb-6">
+          <p className="text-[.8rem] text-slate-600 mb-6">
             {totalCount} {isEvents ? "events" : totalCount === 1 ? "place" : "places"} found
           </p>
 

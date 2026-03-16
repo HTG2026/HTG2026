@@ -3,6 +3,10 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import JsonLd from "./components/JsonLd";
+import ChunkLoadErrorBoundary from "./ChunkLoadErrorBoundary";
+import ChunkLoadRecoveryScript from "./components/ChunkLoadRecoveryScript";
+import WeatherWidget from "./components/WeatherWidget";
+import MobileNav from "./components/MobileNav";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.vercel.app";
 
@@ -38,7 +42,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#07090B",
+  themeColor: "#FAFAFA",
 };
 
 export default function RootLayout({
@@ -50,69 +54,49 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <JsonLd />
+        <ChunkLoadRecoveryScript />
       </head>
-      <body className="antialiased min-h-screen flex flex-col font-body bg-htdark text-white">
+      <body className="antialiased min-h-screen flex flex-col font-body bg-htbg text-htdark">
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
-        <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 bg-[rgba(7,9,11,.95)] backdrop-blur-xl border-b border-white/[0.08]">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image src="/logo.png" alt="The Happy Traveler" width={140} height={40} className="h-9 w-auto" />
-          </Link>
-          <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
-            <Link href="/" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Home
+        <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 nav-glass border-b border-black/[0.06]">
+          <div className="flex items-center gap-4 shrink-0">
+            <Link href="/" className="flex items-center gap-2">
+              <Image src="/logo.png" alt="The Happy Traveler" width={140} height={40} className="h-9 w-auto" />
             </Link>
-            <Link href="/explore" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Explore
-            </Link>
-            <Link href="/theme-parks" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Theme Parks
-            </Link>
-            <Link href="/tips-guides" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Tips & Guides
-            </Link>
-            <Link href="/plan-my-day" className="text-[.78rem] font-medium text-teal border border-teal/35 hover:bg-teal/10 px-3 py-1.5 rounded-full transition-all">
-              Plan My Day ✨
-            </Link>
-            <Link href="/map" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Map
-            </Link>
-            <Link href="/flight-tracker" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
-              Flight Tracker
-            </Link>
-            <Link href="/contact" className="text-[.78rem] font-bold bg-orange text-white hover:bg-[#e04510] px-3 py-1.5 rounded-full transition-all">
-              Contact
-            </Link>
-          </nav>
+            <WeatherWidget />
+          </div>
+          <MobileNav />
         </header>
         <main id="main" className="flex-1 pt-16 sm:pt-20">
-          {children}
+          <ChunkLoadErrorBoundary>{children}</ChunkLoadErrorBoundary>
         </main>
-        <footer className="bg-[#040607] border-t border-[rgba(255,255,255,.07)] py-12 px-6 sm:px-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <footer className="bg-slate-100 border-t border-slate-200 py-12 px-6 sm:px-12 grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div>
             <div className="mb-2">
               <Image src="/logo.png" alt="The Happy Traveler" width={120} height={34} className="h-8 w-auto" />
             </div>
-            <p className="text-[.76rem] text-white/30 leading-relaxed">
+            <p className="text-[.76rem] text-slate-600 leading-relaxed">
               Central Florida&apos;s insider guide. Orlando, Cocoa, Tampa. Real hacks, hidden spots, local knowledge.
             </p>
           </div>
           <div>
-            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-white/25 mb-3">Explore</h4>
-            <Link href="/explore" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Local Businesses</Link>
-            <Link href="/theme-parks" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Theme Parks</Link>
-            <Link href="/tips-guides" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Tips & Guides</Link>
-            <Link href="/map" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Orlando Map</Link>
-            <Link href="/flight-tracker" className="block text-[.76rem] text-white/35 hover:text-teal transition-colors">Flight Tracker</Link>
+            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-slate-500 mb-3">Explore</h4>
+            <Link href="/explore" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Local Businesses</Link>
+            <Link href="/theme-parks" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Theme Parks</Link>
+            <Link href="/tips-guides" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Tips & Guides</Link>
+            <Link href="/map" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Orlando Map</Link>
+            <Link href="/shows" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Live Shows</Link>
+            <Link href="/flight-tracker" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Flight Tracker</Link>
           </div>
           <div>
-            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-white/25 mb-3">Connect</h4>
-            <Link href="/contact" className="block text-[.76rem] text-white/35 hover:text-teal transition-colors">Contact</Link>
+            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-slate-500 mb-3">Connect</h4>
+            <Link href="/contact" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Contact</Link>
           </div>
         </footer>
-        <div className="bg-[#040607] border-t border-white/5 py-3 px-6 sm:px-12 flex justify-between items-center">
-          <span className="text-[.66rem] text-white/20">© {new Date().getFullYear()} The Happy Traveler. All rights reserved.</span>
+        <div className="bg-slate-100 border-t border-slate-200 py-3 px-6 sm:px-12 flex justify-between items-center">
+          <span className="text-[.66rem] text-slate-500">© {new Date().getFullYear()} The Happy Traveler. All rights reserved.</span>
         </div>
       </body>
     </html>

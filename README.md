@@ -54,7 +54,7 @@ The home page TikTok carousel updates every **6 hours** via a Vercel cron job.
 
 1. **Upstash Redis** – Add the [Upstash Redis integration](https://vercel.com/integrations/upstash) in your Vercel project. This stores the scraped video URLs.
 
-2. **ScrapeCreators** (optional) – For real TikTok hashtag scraping, add `SCRAPECREATORS_API_KEY` to your env. Without it, the carousel uses a curated fallback list.
+2. **API Keys** – See [docs/SETUP_API_KEYS.md](docs/SETUP_API_KEYS.md) for WEATHERAPI_KEY (required for ads), TICKETMASTER_API_KEY, and more.
 
 3. **Eventbrite** (optional) – Add `EVENTBRITE_TOKEN` for live Orlando events. Get a token at [eventbrite.com/platform/api](https://www.eventbrite.com/platform/api/).
 

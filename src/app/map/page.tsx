@@ -38,8 +38,8 @@ function MapMarker({
     >
       <circle
         r={hasLink ? 10 : 8}
-        fill={hasLink ? "var(--teal)" : "rgba(255,255,255,0.3)"}
-        stroke="rgba(255,255,255,0.5)"
+        fill={hasLink ? "var(--teal)" : "rgba(148,163,184,0.5)"}
+        stroke="rgba(100,116,139,0.6)"
         strokeWidth={1.5}
         className={hasLink ? "hover:fill-[#00d4d0] transition-colors" : ""}
       />
@@ -47,7 +47,7 @@ function MapMarker({
         y={3}
         textAnchor="middle"
         fontSize={8}
-        fill="white"
+        fill={hasLink ? "white" : "#334155"}
         style={{ pointerEvents: "none" }}
       >
         {TYPE_EMOJI[place.type] || "•"}
@@ -107,13 +107,13 @@ function DistrictCard({
 }) {
   return (
     <div
-      className="relative overflow-hidden rounded-lg border-2 border-white/10 bg-black/40 backdrop-blur-sm transition-all hover:border-teal/40 hover:shadow-lg hover:shadow-teal/10"
+      className="relative overflow-hidden rounded-lg border-2 border-slate-200 bg-white/80 backdrop-blur-sm transition-all hover:border-teal/40 hover:shadow-lg hover:shadow-teal/10 shadow-sm"
       style={{
-        background: `linear-gradient(135deg, ${region.color}88 0%, ${region.color}44 100%)`,
+        background: `linear-gradient(135deg, ${region.color}30 0%, ${region.color}15 100%)`,
       }}
     >
-      <div className="absolute inset-0 opacity-20">
-        <svg width="100%" height="100%" className="text-white">
+      <div className="absolute inset-0 opacity-30">
+        <svg width="100%" height="100%" className="text-slate-400">
           <defs>
             <pattern
               id={`grid-${region.id}`}
@@ -133,10 +133,10 @@ function DistrictCard({
         </svg>
       </div>
       <div className="relative p-4">
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-white/90">
+        <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-htdark">
           {region.label}
         </h3>
-        <p className="mb-4 text-[0.65rem] text-white/50">
+        <p className="mb-4 text-[0.65rem] text-slate-600">
           {places.length} spot{places.length !== 1 ? "s" : ""}
         </p>
         <svg
@@ -217,7 +217,7 @@ function UnifiedMapView({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-xl border-2 border-white/15 bg-[#0d1117] p-2 shadow-2xl">
+    <div className="relative overflow-hidden rounded-xl border-2 border-slate-200 bg-slate-800 p-2 shadow-xl">
       <div className="absolute inset-0 opacity-30">
         <svg width="100%" height="100%" className="text-teal/20">
           <defs>
@@ -288,17 +288,17 @@ export default function MapPage() {
   const placesByRegion = useMemo(() => getPlacesByRegion(PLACES), []);
 
   return (
-    <div className="min-h-screen bg-[#0a0e12]">
+    <div className="min-h-screen bg-htbg">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10">
           <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-teal mb-2">
             Orlando Map
           </div>
-          <h1 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-tight">
-            <span className="text-white">GTA-Style</span>{" "}
+          <h1 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-tight text-htdark">
+            <span className="text-htdark">GTA-Style</span>{" "}
             <span className="italic text-teal">Orlando</span>
           </h1>
-          <p className="mt-3 max-w-xl text-sm text-white/50">
+          <p className="mt-3 max-w-xl text-sm text-slate-600">
             Explore Orlando by region. Click any marker to reserve a table, book
             tickets, or get more info.
           </p>
@@ -308,7 +308,7 @@ export default function MapPage() {
           <UnifiedMapView placesByRegion={placesByRegion} />
         </div>
 
-        <h2 className="mb-6 text-sm font-bold uppercase tracking-wider text-white/70">
+        <h2 className="mb-6 text-sm font-bold uppercase tracking-wider text-slate-600">
           Districts — click markers to book
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -321,14 +321,14 @@ export default function MapPage() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-4 rounded-xl border border-white/10 bg-black/30 p-4">
-          <span className="text-[0.65rem] font-bold uppercase text-white/40">
+        <div className="mt-12 flex flex-wrap gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <span className="text-[0.65rem] font-bold uppercase text-slate-500">
             Legend
           </span>
           {Object.entries(TYPE_EMOJI).map(([type, emoji]) => (
             <span
               key={type}
-              className="flex items-center gap-1.5 text-[0.7rem] text-white/60"
+              className="flex items-center gap-1.5 text-[0.7rem] text-slate-600"
             >
               <span>{emoji}</span>
               <span className="capitalize">{type}</span>

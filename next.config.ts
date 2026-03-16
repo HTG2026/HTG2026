@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "picsum.photos", pathname: "/**" },
+      { protocol: "https", hostname: "s1.ticketm.net", pathname: "/**" },
+      { protocol: "https", hostname: "media.kennedyspacecenter.com", pathname: "/**" },
+      { protocol: "https", hostname: "www.gatorland.com", pathname: "/**" },
+      { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
     ],
   },
   async redirects() {

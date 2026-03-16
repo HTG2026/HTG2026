@@ -13,9 +13,10 @@ export default {
         orange: "#FF5A1F",
         gold: "#FFB800",
         htgreen: "#4ADE80",
-        htdark: "#07090B",
-        htcard: "#0F1215",
-        htcard2: "#141820",
+        htbg: "#FAFAFA",
+        htdark: "#1E293B",
+        htcard: "#FFFFFF",
+        htcard2: "#F1F5F9",
       },
       fontFamily: {
         display: ["Bebas Neue", "sans-serif"],

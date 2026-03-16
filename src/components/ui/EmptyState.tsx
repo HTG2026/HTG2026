@@ -18,9 +18,9 @@ export default function EmptyState({
       <span className="mb-4 text-4xl" role="img" aria-hidden>
         {icon}
       </span>
-      <h3 className="text-lg font-semibold text-white/90">{title}</h3>
+      <h3 className="text-lg font-semibold text-htdark">{title}</h3>
       {description && (
-        <p className="mt-2 max-w-sm text-sm text-white/50">{description}</p>
+        <p className="mt-2 max-w-sm text-sm text-slate-600">{description}</p>
       )}
       {action && <div className="mt-6">{action}</div>}
     </div>

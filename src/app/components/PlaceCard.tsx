@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&q=80";
 
 interface PlaceCardProps {
   name: string;
@@ -27,15 +30,17 @@ export default function PlaceCard({
   href = "#",
   reviewsUrl,
 }: PlaceCardProps) {
+  const [imgSrc, setImgSrc] = useState(image);
   const linkContent = (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
         <Image
-          src={image}
+          src={imgSrc}
           alt={name}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
+          onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
         <div className="absolute top-2 left-2 flex gap-1.5">
           {badge && (
@@ -43,17 +48,17 @@ export default function PlaceCard({
               {badge}
             </span>
           )}
-          <span className="rounded-md bg-black/50 px-2 py-0.5 text-[0.6rem] font-medium text-white/90 backdrop-blur-sm">
+          <span className="rounded-md bg-black/60 px-2 py-0.5 text-[0.6rem] font-medium text-white/90 backdrop-blur-sm">
             {category}
           </span>
         </div>
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-white group-hover:text-teal transition-colors mb-0.5">{name}</h3>
-        <p className="text-[0.7rem] text-white/40 mb-2">{area}</p>
-        <p className="text-sm text-white/55 line-clamp-2">{desc}</p>
+        <h3 className="font-semibold text-htdark group-hover:text-teal transition-colors mb-0.5">{name}</h3>
+        <p className="text-[0.7rem] text-slate-500 mb-2">{area}</p>
+        <p className="text-sm text-slate-600 line-clamp-2">{desc}</p>
         {priceRange && (
-          <p className="mt-2 text-[0.7rem] text-gold font-medium">{priceRange}</p>
+          <p className="mt-2 text-[0.7rem] text-amber-700 font-medium">{priceRange}</p>
         )}
       </div>
     </>
@@ -82,7 +87,7 @@ export default function PlaceCard({
   );
 
   return (
-    <div className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 hover:shadow-xl hover:shadow-teal/5 transition-all duration-300">
+    <div className="group block overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift shadow-sm">
       {main}
       {footer}
     </div>

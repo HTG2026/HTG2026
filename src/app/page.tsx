@@ -7,8 +7,8 @@ import { PLACES } from "@/data/places";
 const TICKER_ITEMS = [
   { num: "50K+", txt: "families used this last month" },
   { num: "9K+", txt: "itineraries built" },
-  { num: "4.8★", txt: "average rating" },
   { num: "30s", txt: "avg build time" },
+  { num: "40+", txt: "curated spots" },
 ];
 
 const HERO_TAGS = [
@@ -143,13 +143,12 @@ export default function Home() {
                 name={place.name}
                 area={place.area}
                 desc={place.desc}
-                rating={place.rating}
-                reviewCount={place.reviewCount}
                 image={place.image}
                 category={place.type.charAt(0).toUpperCase() + place.type.slice(1)}
                 priceRange={place.priceRange}
                 badge={place.badge}
-                href="/explore"
+                href={place.bookUrl || "/explore"}
+                reviewsUrl={place.reviewsUrl}
               />
             ))}
           </div>

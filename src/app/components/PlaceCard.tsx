@@ -7,29 +7,28 @@ interface PlaceCardProps {
   name: string;
   area: string;
   desc: string;
-  rating: number;
-  reviewCount: number;
   image: string;
   category: string;
   priceRange?: string;
   badge?: string;
   href?: string;
+  /** Link to real reviews (OpenTable, Yelp, etc.) — only when from verified source */
+  reviewsUrl?: string;
 }
 
 export default function PlaceCard({
   name,
   area,
   desc,
-  rating,
-  reviewCount,
   image,
   category,
   priceRange,
   badge,
   href = "#",
+  reviewsUrl,
 }: PlaceCardProps) {
-  const content = (
-    <div className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 hover:shadow-xl hover:shadow-teal/5 transition-all duration-300">
+  const linkContent = (
+    <>
       <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
         <Image
           src={image}
@@ -48,13 +47,6 @@ export default function PlaceCard({
             {category}
           </span>
         </div>
-        <div className="absolute bottom-2 left-2 right-2 flex items-center gap-2">
-          <div className="rounded-lg bg-black/60 backdrop-blur-sm px-2 py-1 flex items-center gap-1.5">
-            <span className="text-[0.7rem] font-bold text-teal">{rating.toFixed(1)}</span>
-            <span className="text-[0.55rem] text-gold">★</span>
-            <span className="text-[0.6rem] text-white/80">({reviewCount.toLocaleString()})</span>
-          </div>
-        </div>
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-white group-hover:text-teal transition-colors mb-0.5">{name}</h3>
@@ -64,16 +56,35 @@ export default function PlaceCard({
           <p className="mt-2 text-[0.7rem] text-gold font-medium">{priceRange}</p>
         )}
       </div>
+    </>
+  );
+
+  const footer = reviewsUrl && (
+    <div className="px-4 pb-4">
+      <a
+        href={reviewsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[0.65rem] font-semibold text-teal hover:text-teal/80 underline"
+      >
+        See reviews →
+      </a>
     </div>
   );
 
   const isExternal = href?.startsWith("http");
-  if (href && !isExternal) return <Link href={href}>{content}</Link>;
-  if (href && isExternal)
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="block">
-        {content}
-      </a>
-    );
-  return content;
+  const main = href && href !== "#" && !isExternal ? (
+    <Link href={href}>{linkContent}</Link>
+  ) : href && href !== "#" && isExternal ? (
+    <a href={href} target="_blank" rel="noopener noreferrer">{linkContent}</a>
+  ) : (
+    linkContent
+  );
+
+  return (
+    <div className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 hover:shadow-xl hover:shadow-teal/5 transition-all duration-300">
+      {main}
+      {footer}
+    </div>
+  );
 }

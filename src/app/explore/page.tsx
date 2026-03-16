@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import PlaceCard from "../components/PlaceCard";
 import EventCard from "../components/EventCard";
+import EmptyState from "@/components/ui/EmptyState";
 import { PLACES } from "@/data/places";
 import type { EventItem } from "@/data/events";
 
@@ -17,14 +18,14 @@ const CATEGORIES = [
 ];
 
 const SORT_OPTIONS = [
-  { id: "rating", label: "Highest rated" },
-  { id: "reviews", label: "Most reviewed" },
-  { id: "popular", label: "Popular" },
+  { id: "name", label: "Name A–Z" },
+  { id: "area", label: "Area" },
+  { id: "type", label: "Category" },
 ];
 
 export default function Explore() {
   const [filter, setFilter] = useState<string>("all");
-  const [sort, setSort] = useState("rating");
+  const [sort, setSort] = useState("name");
   const [search, setSearch] = useState("");
   const [events, setEvents] = useState<EventItem[]>([]);
 
@@ -56,9 +57,10 @@ export default function Explore() {
   }
 
   const sortedPlaces = [...filtered].sort((a, b) => {
-    if (sort === "rating") return b.rating - a.rating;
-    if (sort === "reviews") return b.reviewCount - a.reviewCount;
-    return b.reviewCount - a.reviewCount;
+    if (sort === "name") return a.name.localeCompare(b.name);
+    if (sort === "area") return a.area.localeCompare(b.area) || a.name.localeCompare(b.name);
+    if (sort === "type") return a.type.localeCompare(b.type) || a.name.localeCompare(b.name);
+    return 0;
   });
 
   const filteredEvents = isEvents && search.trim()
@@ -77,10 +79,6 @@ export default function Explore() {
       {/* Trust badges */}
       <div className="py-3 px-6 sm:px-12 bg-white/[0.02] border-b border-white/5">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 text-[.7rem] text-white/40">
-          <span className="flex items-center gap-1.5">
-            <span className="text-gold">★</span> 4.8 avg rating
-          </span>
-          <span>·</span>
           <span>Magical Dining® partners</span>
           <span>·</span>
           <span>Eventbrite events</span>
@@ -189,25 +187,23 @@ export default function Explore() {
                   name={b.name}
                   area={b.area}
                   desc={b.desc}
-                  rating={b.rating}
-                  reviewCount={b.reviewCount}
                   image={b.image}
                   category={b.type.charAt(0).toUpperCase() + b.type.slice(1)}
                   priceRange={b.priceRange}
                   badge={b.badge}
                   href={b.bookUrl || "#"}
+                  reviewsUrl={b.reviewsUrl}
                 />
               ))}
             </div>
           )}
 
           {totalCount === 0 && (
-            <div className="text-center py-16 text-white/50">
-              <p className="text-lg font-medium mb-2">
-                {isEvents ? "No events found" : "No places found"}
-              </p>
-              <p className="text-sm">Try a different search or category.</p>
-            </div>
+            <EmptyState
+              icon={isEvents ? "🎫" : "🗺️"}
+              title={isEvents ? "No events found" : "No places found"}
+              description="Try a different search or category."
+            />
           )}
         </div>
       </div>

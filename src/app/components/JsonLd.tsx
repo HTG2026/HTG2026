@@ -11,12 +11,6 @@ export default function JsonLd() {
       { "@type": "City", name: "Tampa", containedInPlace: { "@type": "State", name: "Florida" } },
     ],
     serviceType: ["Travel Guide", "Restaurant Recommendations", "Theme Park Tips", "Local Experiences"],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "50000",
-      bestRating: "5",
-    },
   };
 
   return (

@@ -52,6 +52,9 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="antialiased min-h-screen flex flex-col font-body bg-htdark text-white">
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
         <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 bg-[rgba(7,9,11,.95)] backdrop-blur-xl border-b border-white/[0.08]">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image src="/logo.png" alt="The Happy Traveler" width={140} height={40} className="h-9 w-auto" />
@@ -83,7 +86,7 @@ export default function RootLayout({
             </Link>
           </nav>
         </header>
-        <main className="flex-1 pt-16 sm:pt-20">
+        <main id="main" className="flex-1 pt-16 sm:pt-20">
           {children}
         </main>
         <footer className="bg-[#040607] border-t border-[rgba(255,255,255,.07)] py-12 px-6 sm:px-12 grid grid-cols-1 sm:grid-cols-3 gap-8">

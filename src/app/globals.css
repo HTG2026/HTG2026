@@ -5,22 +5,33 @@
 @tailwind utilities;
 
 :root {
+  /* Brand */
   --teal: #00B5B2;
   --orange: #FF5A1F;
   --gold: #FFB800;
   --green: #4ADE80;
   --red: #FF4444;
+
+  /* Surfaces */
   --dark: #07090B;
   --card: #0F1215;
   --card2: #141820;
+
+  /* Borders & text */
   --border: rgba(255,255,255,.07);
   --border2: rgba(255,255,255,.12);
   --mid: rgba(255,255,255,.45);
   --dim: rgba(255,255,255,.22);
   --faint: rgba(255,255,255,.08);
+
+  /* Typography */
   --font-display: 'Bebas Neue', sans-serif;
   --font-serif: 'Fraunces', serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* Focus ring — WCAG AA */
+  --focus-ring: 2px solid var(--teal);
+  --focus-offset: 2px;
 }
 
 * {
@@ -40,6 +51,29 @@ body {
   overflow-x: hidden;
 }
 
+/* Focus visible — keyboard only, not mouse */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Skip link for a11y */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--teal);
+  color: var(--dark);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -53,5 +87,14 @@ body {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 

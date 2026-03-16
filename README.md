@@ -2,6 +2,24 @@
 
 A Next.js travel site with Tailwind CSS. Includes pages for Home, Destinations, Blog, Flight Tracker, and Contact.
 
+## Deploy (one-time setup)
+
+**Option A: One-click deploy**
+
+1. Go to **[vercel.com/new](https://vercel.com/new)**
+2. Sign in with **GitHub**
+3. Click **Import** next to `HTG2026/HTG2026` (or paste `https://github.com/HTG2026/HTG2026`)
+4. Click **Deploy** — no config needed
+5. Wait ~2 min. Your site URL will be `https://[project-name].vercel.app`
+
+**Option B: CLI**
+
+```bash
+npm i -g vercel
+vercel login    # opens browser — sign in with GitHub
+vercel --prod   # deploys and prints your URL
+```
+
 ## Getting started
 
 Install dependencies and run the dev server:

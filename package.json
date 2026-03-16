@@ -9,7 +9,7 @@
     "start:alt": "next start -p 3006",
     "preview": "npm run build && next start",
     "deploy": "vercel --prod",
-    "share": "npx localtunnel --port 3000",
+    "share": "ssh -R 80:localhost:3000 nokey@localhost.run",
     "lint": "next lint",
     "postinstall": "node scripts/patch-next-network.js"
   },

@@ -38,7 +38,9 @@ The home page TikTok carousel updates every **6 hours** via a Vercel cron job.
 
 2. **ScrapeCreators** (optional) – For real TikTok hashtag scraping, add `SCRAPECREATORS_API_KEY` to your env. Without it, the carousel uses a curated fallback list.
 
-3. **Deploy to Vercel** – The cron runs automatically at `0 */6 * * *` (every 6 hours).
+3. **Eventbrite** (optional) – Add `EVENTBRITE_TOKEN` for live Orlando events. Get a token at [eventbrite.com/platform/api](https://www.eventbrite.com/platform/api/).
+
+4. **Deploy to Vercel** – The cron runs automatically at `0 */6 * * *` (every 6 hours).
 
 ### Manual trigger
 

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import TikTokCarousel from "./components/TikTokCarousel";
 import PlaceCard from "./components/PlaceCard";
+import AIRecommendations from "./components/AIRecommendations";
+import { PLACES } from "@/data/places";
 
 const TICKER_ITEMS = [
   { num: "50K+", txt: "families used this last month" },
@@ -18,38 +20,9 @@ const HERO_TAGS = [
   "🛺 Scooter Rental",
 ];
 
-const TRENDING_PLACES = [
-  {
-    name: "Bar Purgatory",
-    area: "Thornton Park",
-    desc: "Craft cocktails · Local fave tourists walk right past",
-    rating: 4.9,
-    reviewCount: 340,
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80",
-    category: "Bars",
-    badge: "Local Fave",
-  },
-  {
-    name: "Pho Hoa Hiep",
-    area: "Mills 50",
-    desc: "Vietnamese · Hidden gem tourists never find",
-    rating: 4.8,
-    reviewCount: 892,
-    image: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&q=80",
-    category: "Restaurants",
-    badge: "Hidden Gem",
-  },
-  {
-    name: "Boggy Creek Airboat Adventures",
-    area: "Kissimmee",
-    desc: "Airboat tours · Gator spotting · Family favorite",
-    rating: 4.7,
-    reviewCount: 2147,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80",
-    category: "Experiences",
-    badge: "Viral",
-  },
-];
+const TRENDING_PLACES = PLACES.filter((p) =>
+  ["Christini's Ristorante Italiano", "The Ravenous Pig", "Kennedy Space Center", "Boggy Creek Airboat Adventures", "Domu", "Lake Eola Park"].includes(p.name)
+).slice(0, 6);
 
 export default function Home() {
   return (
@@ -144,12 +117,17 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
+              <div className="flex items-center gap-2 mb-2">
+              <span className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange">
                 Trending Now
-              </div>
-              <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight">
-                Top picks in <span className="not-italic text-teal">Central Florida</span>
-              </h2>
+              </span>
+              <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[.55rem] font-bold text-gold border border-gold/30">
+                AWARD-WINNING
+              </span>
+            </div>
+            <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight">
+              Top picks in <span className="not-italic text-teal">Central Florida</span>
+            </h2>
             </div>
             <Link
               href="/explore"
@@ -160,7 +138,19 @@ export default function Home() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {TRENDING_PLACES.map((place) => (
-              <PlaceCard key={place.name} {...place} href="/explore" />
+              <PlaceCard
+                key={place.name}
+                name={place.name}
+                area={place.area}
+                desc={place.desc}
+                rating={place.rating}
+                reviewCount={place.reviewCount}
+                image={place.image}
+                category={place.type.charAt(0).toUpperCase() + place.type.slice(1)}
+                priceRange={place.priceRange}
+                badge={place.badge}
+                href="/explore"
+              />
             ))}
           </div>
         </div>
@@ -245,6 +235,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AIRecommendations />
     </div>
   );
 }

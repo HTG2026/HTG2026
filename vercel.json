@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/tiktok-scrape",
       "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/eventbrite-scrape",
+      "schedule": "0 */6 * * *"
     }
   ]
 }

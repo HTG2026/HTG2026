@@ -28,3 +28,24 @@ export async function setTikTokFeed(urls: string[]): Promise<void> {
     // ignore
   }
 }
+
+const EVENTS_KEY = "happy-traveler:events";
+
+export async function getEvents(): Promise<unknown[] | null> {
+  if (!redis) return null;
+  try {
+    const data = await redis.get<unknown[]>(EVENTS_KEY);
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export async function setEvents(events: unknown[]): Promise<void> {
+  if (!redis) return;
+  try {
+    await redis.set(EVENTS_KEY, events, { ex: 60 * 60 * 24 }); // 24hr TTL
+  } catch {
+    // ignore
+  }
+}

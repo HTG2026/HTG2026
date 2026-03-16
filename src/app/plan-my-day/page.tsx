@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { generateItinerary } from "@/lib/itinerary-engine";
+import Link from "next/link";
 
 const STEPS = {
   group: {
@@ -32,18 +34,6 @@ const STEPS = {
   },
 };
 
-const MOCK_ITINERARY = {
-  title: "Your Mix-of-Both Day",
-  budget: "Est $80–$120 per person",
-  stops: [
-    { time: "9:00 AM", emoji: "☀️", name: "Magic Kingdom Rope Drop", detail: "Arrive 45 min early, hit TRON before any queue forms." },
-    { time: "11:30 AM", emoji: "🍕", name: "Pinocchio Village Haus", detail: "$12 flatbreads, front-row view of It's a Small World boats." },
-    { time: "2:00 PM", emoji: "🛺", name: "Scooter rental", detail: "Resort delivery. Saves 45 min of walking for a full park day." },
-    { time: "6:30 PM", emoji: "🍹", name: "The Courtesy Bar", detail: "Local craft cocktails. Old Fashioned is unreal. Tourists never find it." },
-  ],
-  proTip: "Frozen Butterbeer > regular. Always. The cream foam changes everything.",
-};
-
 export default function PlanMyDay() {
   const [step, setStep] = useState<keyof typeof STEPS>("group");
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -62,6 +52,14 @@ export default function PlanMyDay() {
 
   const currentStep = STEPS[step];
 
+  const itinerary = done
+    ? generateItinerary(
+        (answers.group as "solo" | "couple" | "squad" | "family") || "couple",
+        (answers.vibe as "parks" | "local" | "mix" | "nightlife") || "mix",
+        (answers.budget as "under50" | "50-150" | "150-300" | "300plus") || "50-150"
+      )
+    : null;
+
   return (
     <div className="py-16 px-6 sm:px-12 max-w-4xl mx-auto">
       <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">AI-Powered</div>
@@ -69,7 +67,7 @@ export default function PlanMyDay() {
         <span className="text-teal">Plan My Day</span>
       </h1>
       <p className="text-white/50 text-lg max-w-xl mb-12">
-        Tell us your party size, interests, and budget. We&apos;ll build your perfect Central Florida day.
+        Tell us your party size, interests, and budget. We&apos;ll build your perfect Central Florida day from real Orlando spots.
       </p>
 
       {!done ? (
@@ -92,37 +90,57 @@ export default function PlanMyDay() {
             </p>
           )}
         </div>
-      ) : (
+      ) : itinerary ? (
         <div className="space-y-6">
           <div className="p-6 rounded-xl border border-teal/20 bg-teal/5">
-            <h2 className="text-lg font-semibold text-teal mb-2">📍 {MOCK_ITINERARY.title}</h2>
-            <p className="text-sm text-white/40 mb-4">{MOCK_ITINERARY.budget}</p>
+            <h2 className="text-lg font-semibold text-teal mb-2">📍 {itinerary.title}</h2>
+            <p className="text-sm text-white/40 mb-4">{itinerary.budgetEst}</p>
             <div className="space-y-3">
-              {MOCK_ITINERARY.stops.map((stop, i) => (
+              {itinerary.stops.map((stop, i) => (
                 <div key={i} className="flex gap-3 py-2 border-b border-white/5 last:border-0">
                   <span className="text-[.7rem] font-bold text-orange shrink-0 w-14">{stop.time}</span>
-                  <div>
-                    <span className="font-medium">{stop.emoji} {stop.name}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-medium">{stop.emoji} {stop.name}</span>
+                      {stop.bookUrl && (
+                        <a
+                          href={stop.bookUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[.65rem] font-semibold text-teal hover:text-teal/80 underline shrink-0"
+                        >
+                          {/Magic Kingdom|Epcot|Hollywood|Animal Kingdom|Universal|SeaWorld|Kennedy|Gatorland|ICON Park|Boggy Creek|Wild Florida|Balloon|Paddleboard|Wekiwa|Scooter/i.test(stop.name) ? "Get tickets →" : "Reserve →"}
+                        </a>
+                      )}
+                    </div>
                     <p className="text-sm text-white/50">{stop.detail}</p>
+                    {stop.priceHint && (
+                      <span className="text-[.65rem] text-gold">{stop.priceHint}</span>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
             <div className="mt-4 p-3 rounded-lg bg-gold/10 border border-gold/20">
-              <strong className="text-gold">💡 Pro tip:</strong> {MOCK_ITINERARY.proTip}
+              <strong className="text-gold">💡 Pro tip:</strong> {itinerary.proTip}
             </div>
           </div>
-          <p className="text-sm text-white/40">
-            Connect an AI API (e.g. Claude, OpenAI) to generate real itineraries. TikTok scrapers will prioritize trending spots.
-          </p>
-          <button
-            onClick={() => { setDone(false); setAnswers({}); setStep("group"); }}
-            className="px-4 py-2 rounded-full text-sm font-semibold bg-teal/20 border border-teal/40 text-teal hover:bg-teal/30 transition-all"
-          >
-            Start over
-          </button>
+          <div className="flex gap-3">
+            <Link
+              href="/explore"
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-teal/20 border border-teal/40 text-teal hover:bg-teal/30 transition-all"
+            >
+              Explore more spots →
+            </Link>
+            <button
+              onClick={() => { setDone(false); setAnswers({}); setStep("group"); }}
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-white/5 border border-white/10 text-white/60 hover:bg-white/10 transition-all"
+            >
+              Start over
+            </button>
+          </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

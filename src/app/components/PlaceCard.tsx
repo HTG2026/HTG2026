@@ -29,7 +29,7 @@ export default function PlaceCard({
   href = "#",
 }: PlaceCardProps) {
   const content = (
-    <div className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 transition-all">
+    <div className="group block overflow-hidden rounded-xl border border-white/10 bg-htcard/50 hover:border-teal/30 hover:bg-teal/5 hover:shadow-xl hover:shadow-teal/5 transition-all duration-300">
       <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
         <Image
           src={image}
@@ -67,5 +67,13 @@ export default function PlaceCard({
     </div>
   );
 
-  return href ? <Link href={href}>{content}</Link> : content;
+  const isExternal = href?.startsWith("http");
+  if (href && !isExternal) return <Link href={href}>{content}</Link>;
+  if (href && isExternal)
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="block">
+        {content}
+      </a>
+    );
+  return content;
 }

@@ -1,11 +1,44 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
+import JsonLd from "./components/JsonLd";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.vercel.app";
 
 export const metadata: Metadata = {
-  title: "The Happy Traveler — Central Florida's Insider Guide",
-  description: "Your guide to exploring Central Florida: Orlando, Cocoa, and Tampa. Real park hacks, hidden spots, and local knowledge.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "The Happy Traveler — Orlando & Central Florida's Insider Guide",
+    template: "%s | The Happy Traveler",
+  },
+  description: "Orlando restaurants, Magical Dining, theme park hacks, hidden bars, and local experiences. Plan your perfect Central Florida day with real Orlando data.",
+  keywords: ["Orlando", "Central Florida", "Magical Dining", "Disney", "Universal", "Orlando restaurants", "Orlando nightlife", "Cocoa Beach", "Tampa", "theme park tips", "Orlando travel"],
+  authors: [{ name: "The Happy Traveler" }],
+  creator: "The Happy Traveler",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "The Happy Traveler",
+    title: "The Happy Traveler — Orlando & Central Florida's Insider Guide",
+    description: "Real park hacks, Magical Dining restaurants, hidden spots. Plan your perfect Orlando day.",
+    images: [{ url: "/logo.png", width: 400, height: 120, alt: "The Happy Traveler" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Happy Traveler — Orlando's Insider Guide",
+    description: "Real park hacks, Magical Dining, hidden spots. Plan your perfect Orlando day.",
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: SITE_URL },
+  category: "travel",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#07090B",
 };
 
 export default function RootLayout({
@@ -15,6 +48,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <JsonLd />
+      </head>
       <body className="antialiased min-h-screen flex flex-col font-body bg-htdark text-white">
         <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 bg-[rgba(7,9,11,.95)] backdrop-blur-xl border-b border-white/[0.08]">
           <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -35,6 +71,9 @@ export default function RootLayout({
             </Link>
             <Link href="/plan-my-day" className="text-[.78rem] font-medium text-teal border border-teal/35 hover:bg-teal/10 px-3 py-1.5 rounded-full transition-all">
               Plan My Day ✨
+            </Link>
+            <Link href="/map" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
+              Map
             </Link>
             <Link href="/flight-tracker" className="text-[.78rem] font-medium text-white/50 hover:text-white hover:bg-white/8 px-3 py-1.5 rounded-full transition-all">
               Flight Tracker
@@ -61,6 +100,7 @@ export default function RootLayout({
             <Link href="/explore" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Local Businesses</Link>
             <Link href="/theme-parks" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Theme Parks</Link>
             <Link href="/tips-guides" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Tips & Guides</Link>
+            <Link href="/map" className="block text-[.76rem] text-white/35 hover:text-teal mb-3 transition-colors">Orlando Map</Link>
             <Link href="/flight-tracker" className="block text-[.76rem] text-white/35 hover:text-teal transition-colors">Flight Tracker</Link>
           </div>
           <div>

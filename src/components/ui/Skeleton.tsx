@@ -5,7 +5,7 @@ interface SkeletonProps {
 export function Skeleton({ className = "" }: SkeletonProps) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-white/10 ${className}`}
+      className={`animate-pulse rounded-lg bg-slate-200 ${className}`}
       aria-hidden
     />
   );
@@ -14,7 +14,7 @@ export function Skeleton({ className = "" }: SkeletonProps) {
 /** Card skeleton for place/event grids */
 export function CardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-htcard/50 p-4">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <Skeleton className="aspect-[4/3] w-full" />
       <Skeleton className="mt-4 h-4 w-3/4" />
       <Skeleton className="mt-2 h-3 w-1/2" />

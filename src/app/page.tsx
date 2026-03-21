@@ -5,8 +5,8 @@ import { PLACES } from "@/data/places";
 
 const TICKER_ITEMS = [
   { num: "40+", txt: "curated spots" },
-  { num: "30s", txt: "to plan your day" },
-  { num: "100%", txt: "local knowledge" },
+  { num: "5", txt: "clicks to plan" },
+  { num: "100%", txt: "locals-only picks" },
   { num: "Free", txt: "to use" },
 ];
 
@@ -53,7 +53,7 @@ export default function Home() {
           </h1>
 
           <p className="text-[.95rem] text-slate-600 leading-relaxed max-w-[500px] mb-8">
-            Real park hacks, hidden restaurants, and local knowledge — plus an AI that builds your perfect family day in 30 seconds.
+            Real park hacks, hidden restaurants, and local knowledge — plus a chatbot that curates your perfect day based on your budget and preferences. In 5 clicks or less.
           </p>
 
           {/* Search — TripAdvisor-style prominent bar */}
@@ -63,8 +63,8 @@ export default function Home() {
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
                 <input
                   type="text"
-                  placeholder="Restaurants, experiences, Disney hacks…"
-                  className="w-full bg-transparent text-htdark py-4 pl-12 pr-4 text-[.95rem] placeholder:text-gray-400 outline-none"
+                placeholder="Restaurants, experiences, Disney hacks…"
+                className="w-full bg-transparent text-htdark py-4 pl-12 pr-4 text-[.95rem] placeholder:text-slate-400 outline-none"
                 />
               </div>
               <div className="flex border-t sm:border-t-0 sm:border-l border-slate-200">
@@ -78,7 +78,7 @@ export default function Home() {
                 href="/explore"
                 className="bg-orange px-8 py-4 min-h-[44px] font-bold text-[.9rem] text-white hover:bg-[#e04510] transition-colors flex items-center justify-center touch-manipulation"
               >
-                Search
+                Find Spots
               </Link>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function Home() {
                 Trending Now
               </span>
               <span className="rounded-full bg-gold/20 px-2 py-0.5 text-[.55rem] font-bold text-amber-700 border border-gold/40">
-                AWARD-WINNING
+                EDITOR&apos;S PICKS
               </span>
             </div>
             <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight text-htdark">
@@ -154,9 +154,9 @@ export default function Home() {
       </section>
 
       {/* Category strip */}
-      <div className="py-4 px-6 sm:px-10 bg-white border-y border-slate-200">
+      <div className="py-4 px-6 sm:px-12 bg-white border-y border-slate-200">
         <div className="max-w-6xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide">
-          {["🗺️ Everything", "🎢 Park Hacks", "🍽️ Local Eats", "🌙 Nightlife", "🎭 Live Shows", "🏖️ Day Trips", "🛺 Rentals", "📍 Hidden Gems", "🎶 Events"].map(
+          {["🗺️ Everything", "🎢 Park Hacks", "🍽️ Local Eats", "🌙 Nightlife", "🎭 Live Shows", "🏖️ Day Trips", "🛺 Rentals", "📍 Hidden Gems", "🎶 Live Events"].map(
             (cat) => (
               <Link
                 key={cat}
@@ -174,7 +174,7 @@ export default function Home() {
       <TikTokCarousel />
 
       {/* Quick links */}
-      <section className="py-20 px-6 sm:px-12 bg-htbg">
+      <section className="py-16 px-6 sm:px-12 bg-htbg">
         <div className="max-w-6xl mx-auto">
           <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">Explore</div>
           <h2 className="font-serif text-[clamp(1.8rem,3vw,2.65rem)] font-black italic leading-tight mb-10 text-htdark">
@@ -187,11 +187,11 @@ export default function Home() {
             >
               <div className="text-2xl mb-2">🗺️</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Explore</h3>
-              <p className="text-sm text-slate-600">Restaurants, experiences, museums, bars & activities.</p>
+              <p className="text-sm text-slate-600">Restaurants, experiences, museums, bars and activities.</p>
             </Link>
             <Link
               href="/theme-parks"
-              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm"
+              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm touch-manipulation"
             >
               <div className="text-2xl mb-2">🎢</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Theme Parks</h3>
@@ -199,43 +199,35 @@ export default function Home() {
             </Link>
             <Link
               href="/tips-guides"
-              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm"
+              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm touch-manipulation"
             >
               <div className="text-2xl mb-2">📝</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Tips & Guides</h3>
-              <p className="text-sm text-slate-600">Vacation tips, Orlando focus, surrounding areas.</p>
+              <p className="text-sm text-slate-600">Vacation tips, Central Florida focus, surrounding areas.</p>
             </Link>
             <Link
               href="/plan-my-day"
-              className="block p-6 rounded-xl border border-teal/40 bg-teal/5 hover:border-teal/60 card-lift group shadow-sm"
+              className="block p-6 rounded-xl border border-teal/40 bg-teal/5 hover:border-teal/60 card-lift group shadow-sm touch-manipulation"
             >
               <div className="text-2xl mb-2">✨</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Plan My Day</h3>
-              <p className="text-sm text-slate-600">AI builds your day by party size, interests & budget.</p>
+              <p className="text-sm text-slate-600">Chatbot curates your day by party size, interests & budget. In 5 clicks or less.</p>
             </Link>
             <Link
               href="/shows"
-              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm"
+              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm touch-manipulation"
             >
               <div className="text-2xl mb-2">🎭</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Live Shows</h3>
               <p className="text-sm text-slate-600">Dr Phillips, Kia Center, Hard Rock, I-Drive Live.</p>
             </Link>
             <Link
-              href="/flight-tracker"
-              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm"
-            >
-              <div className="text-2xl mb-2">✈️</div>
-              <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Flight Tracker</h3>
-              <p className="text-sm text-slate-600">Track flights to MCO.</p>
-            </Link>
-            <Link
               href="/contact"
-              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm"
+              className="block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal/40 card-lift group shadow-sm touch-manipulation"
             >
               <div className="text-2xl mb-2">✉️</div>
               <h3 className="text-lg font-semibold mb-2 text-htdark group-hover:text-teal transition-colors">Contact</h3>
-              <p className="text-sm text-slate-600">Get in touch.</p>
+              <p className="text-sm text-slate-600">Questions? We&apos;re here to help.</p>
             </Link>
           </div>
         </div>

@@ -13,11 +13,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.ver
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Happy Traveler — Orlando & Central Florida's Insider Guide",
+    default: "The Happy Traveler — Central Florida's Insider Guide",
     template: "%s | The Happy Traveler",
   },
-  description: "Orlando restaurants, Magical Dining, theme park hacks, hidden bars, and local experiences. Plan your perfect Central Florida day with real Orlando data.",
-  keywords: ["Orlando", "Central Florida", "Magical Dining", "Disney", "Universal", "Orlando restaurants", "Orlando nightlife", "Cocoa Beach", "Tampa", "theme park tips", "Orlando travel"],
+  description: "Central Florida restaurants, theme park hacks, hidden bars, and local experiences. Plan your perfect day with real Orlando experiences. Orlando, Kissimmee, Lake Buena Vista, Winter Park, Baldwin Park, Dr Phillips, I-Drive.",
+  keywords: ["Central Florida", "Orlando", "Kissimmee", "Lake Buena Vista", "Winter Park", "Baldwin Park", "Dr Phillips", "I-Drive", "Disney", "Universal", "Orlando restaurants", "Orlando nightlife", "Cocoa Beach", "Tampa", "theme park tips", "Orlando travel"],
   authors: [{ name: "The Happy Traveler" }],
   creator: "The Happy Traveler",
   openGraph: {
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "The Happy Traveler",
-    title: "The Happy Traveler — Orlando & Central Florida's Insider Guide",
-    description: "Real park hacks, Magical Dining restaurants, hidden spots. Plan your perfect Orlando day.",
+    title: "The Happy Traveler — Central Florida's Insider Guide",
+    description: "Real park hacks, hidden spots, local favorites. Plan your perfect Central Florida day.",
     images: [{ url: "/logo.png", width: 400, height: 120, alt: "The Happy Traveler" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Happy Traveler — Orlando's Insider Guide",
-    description: "Real park hacks, Magical Dining, hidden spots. Plan your perfect Orlando day.",
+    title: "The Happy Traveler — Central Florida's Insider Guide",
+    description: "Real park hacks, hidden spots, local favorites. Plan your perfect Central Florida day.",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
@@ -60,7 +60,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
-        <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-4 sm:px-10 py-3 nav-glass border-b border-black/[0.06]">
+        <header className="fixed top-0 left-0 right-0 z-[800] flex items-center justify-between px-6 sm:px-12 py-3 nav-glass border-b border-black/[0.06]">
           <div className="flex items-center gap-4 shrink-0">
             <Link href="/" className="flex items-center gap-2">
               <Image src="/logo.png" alt="The Happy Traveler" width={140} height={40} className="h-9 w-auto" />
@@ -78,20 +78,19 @@ export default function RootLayout({
               <Image src="/logo.png" alt="The Happy Traveler" width={120} height={34} className="h-8 w-auto" />
             </div>
             <p className="text-[.76rem] text-slate-600 leading-relaxed">
-              Central Florida&apos;s insider guide. Orlando, Cocoa, Tampa. Real hacks, hidden spots, local knowledge.
+              Central Florida&apos;s insider guide. Orlando, Kissimmee, Lake Buena Vista, Winter Park, Baldwin Park, Dr Phillips, I-Drive. Real hacks, hidden spots, local knowledge.
             </p>
           </div>
           <div>
-            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-slate-500 mb-3">Explore</h4>
+            <h4 className="text-[.62rem] font-extrabold tracking-[3px] uppercase text-slate-500 mb-3">Explore</h4>
             <Link href="/explore" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Local Businesses</Link>
             <Link href="/theme-parks" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Theme Parks</Link>
             <Link href="/tips-guides" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Tips & Guides</Link>
             <Link href="/map" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Orlando Map</Link>
             <Link href="/shows" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Live Shows</Link>
-            <Link href="/flight-tracker" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Flight Tracker</Link>
           </div>
           <div>
-            <h4 className="text-[.62rem] font-extrabold tracking-[2.2px] uppercase text-slate-500 mb-3">Connect</h4>
+            <h4 className="text-[.62rem] font-extrabold tracking-[3px] uppercase text-slate-500 mb-3">Connect</h4>
             <Link href="/contact" className="block text-[.76rem] text-slate-600 hover:text-teal py-2.5 transition-colors">Contact</Link>
           </div>
         </footer>

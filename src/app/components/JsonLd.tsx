@@ -3,7 +3,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: "The Happy Traveler",
-    description: "Central Florida's insider guide. Orlando, Cocoa, Tampa. Real park hacks, hidden spots, Magical Dining, and local knowledge.",
+    description: "Central Florida's insider guide. Orlando, Kissimmee, Lake Buena Vista, Winter Park, Baldwin Park, Dr Phillips, I-Drive. Real park hacks, hidden spots, and local knowledge.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.vercel.app",
     areaServed: [
       { "@type": "City", name: "Orlando", containedInPlace: { "@type": "State", name: "Florida" } },

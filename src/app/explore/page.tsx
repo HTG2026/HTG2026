@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import PlaceCard from "../components/PlaceCard";
 import EventCard from "../components/EventCard";
 import EmptyState from "@/components/ui/EmptyState";
@@ -14,7 +15,7 @@ const CATEGORIES = [
   { id: "museums", label: "Museums", emoji: "🏛️" },
   { id: "bars", label: "Bars & Nightlife", emoji: "🍹" },
   { id: "activities", label: "Activities", emoji: "🎢" },
-  { id: "events", label: "Events", emoji: "🎫" },
+  { id: "events", label: "Live Events", emoji: "🎫" },
 ];
 
 const SORT_OPTIONS = [
@@ -79,29 +80,27 @@ export default function Explore() {
       {/* Trust badges */}
       <div className="py-3 px-6 sm:px-12 bg-htcard2 border-b border-slate-200">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-6 text-[.7rem] text-slate-500">
-          <span>Magical Dining® partners</span>
-          <span>·</span>
-          <span>Eventbrite events</span>
+          <span>Live events</span>
           <span>·</span>
           <span>Local expert curated</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="py-12 px-6 sm:px-12 border-b border-slate-200 bg-htbg">
+      <div className="py-16 px-6 sm:px-12 border-b border-slate-200 bg-htbg">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange">
               Central Florida
             </span>
             <span className="text-[.6rem] text-slate-400">·</span>
-            <span className="text-[.6rem] text-amber-700 font-semibold">Magical Dining · Eventbrite</span>
+            <span className="text-[.6rem] text-amber-700 font-semibold">Live events · Eventbrite</span>
           </div>
           <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4 text-htdark">
             <span className="text-teal">Explore</span>
           </h1>
           <p className="text-slate-600 text-lg max-w-xl mb-8">
-            Restaurants, experiences, museums, bars, and events — curated for tourists by locals. Orlando, Cocoa, Tampa & beyond.
+            Restaurants, experiences, museums, bars, and live events — curated for tourists by locals. Central Florida: Orlando, Kissimmee, Lake Buena Vista, Winter Park, Baldwin Park, Dr Phillips, I-Drive.
           </p>
 
           <div className="max-w-2xl">
@@ -109,7 +108,7 @@ export default function Explore() {
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
               <input
                 type="text"
-                placeholder="Search restaurants, experiences, neighborhoods, events…"
+                placeholder="Search restaurants, experiences, neighborhoods, live events…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full bg-white border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 text-htdark placeholder:text-slate-400 text-[.95rem] outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-all shadow-sm"
@@ -157,10 +156,10 @@ export default function Explore() {
       </div>
 
       {/* Results */}
-      <div className="py-10 px-6 sm:px-12 bg-htbg">
+      <div className="py-16 px-6 sm:px-12 bg-htbg">
         <div className="max-w-6xl mx-auto">
           <p className="text-[.8rem] text-slate-600 mb-6">
-            {totalCount} {isEvents ? "events" : totalCount === 1 ? "place" : "places"} found
+            {totalCount} {isEvents ? "live events" : totalCount === 1 ? "place" : "places"} found
           </p>
 
           {isEvents ? (
@@ -201,8 +200,16 @@ export default function Explore() {
           {totalCount === 0 && (
             <EmptyState
               icon={isEvents ? "🎫" : "🗺️"}
-              title={isEvents ? "No events found" : "No places found"}
+              title={isEvents ? "No live events found" : "No places found"}
               description="Try a different search or category."
+              action={
+                <Link
+                  href="/explore"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-teal text-white text-sm font-semibold hover:bg-teal/90 transition-colors"
+                >
+                  Browse all spots
+                </Link>
+              }
             />
           )}
         </div>

@@ -16,15 +16,15 @@ export default function PageHeader({
   return (
     <header className="mb-10 sm:mb-12">
       {eyebrow && (
-        <p className="mb-2 text-[0.6rem] font-extrabold uppercase tracking-[0.2em] text-teal">
+        <p className="mb-2 text-[.6rem] font-extrabold uppercase tracking-[3px] text-orange">
           {eyebrow}
         </p>
       )}
-      <h1 className="font-display text-[clamp(2rem,4vw,3.25rem)] leading-tight tracking-tight">
+      <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight text-htdark">
         {title}
       </h1>
       {subtitle && (
-        <p className="mt-3 max-w-xl text-sm text-white/50 leading-relaxed">
+        <p className="mt-3 max-w-xl text-lg text-slate-600 leading-relaxed">
           {subtitle}
         </p>
       )}

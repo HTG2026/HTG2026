@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "media.kennedyspacecenter.com", pathname: "/**" },
       { protocol: "https", hostname: "www.gatorland.com", pathname: "/**" },
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
+      { protocol: "https", hostname: "s3-media0.fl.yelpcdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "s3-media1.fl.yelpcdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "s3-media2.fl.yelpcdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "s3-media3.fl.yelpcdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "fastly.4sqi.net", pathname: "/**" },
     ],
   },
   async redirects() {

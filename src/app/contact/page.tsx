@@ -14,6 +14,7 @@ export default function Contact() {
           <input
             id="name"
             type="text"
+            placeholder="Your name"
             className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-htdark placeholder:text-slate-400 shadow-sm"
           />
         </div>
@@ -22,6 +23,7 @@ export default function Contact() {
           <input
             id="email"
             type="email"
+            placeholder="you@example.com"
             className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-htdark placeholder:text-slate-400 shadow-sm"
           />
         </div>
@@ -30,6 +32,7 @@ export default function Contact() {
           <textarea
             id="message"
             rows={4}
+            placeholder="Questions about Central Florida? Share your travel story or ask for recommendations…"
             className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-htdark placeholder:text-slate-400 shadow-sm"
           />
         </div>

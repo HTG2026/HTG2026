@@ -29,7 +29,7 @@ export default function ShowsPage() {
   }, []);
 
   return (
-    <div className="py-16 px-6 sm:px-12 max-w-5xl mx-auto bg-htbg">
+    <div className="py-16 px-6 sm:px-12 max-w-6xl mx-auto bg-htbg">
       <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
         Live Entertainment
       </div>
@@ -37,7 +37,7 @@ export default function ShowsPage() {
         <span className="text-htdark">Shows &</span>{" "}
         <span className="text-teal">Performances</span>
       </h1>
-      <p className="text-slate-600 max-w-xl mb-12">
+      <p className="text-slate-600 text-lg max-w-xl mb-12">
         Dr Phillips Center, Kia Center, Hard Rock Live, House of Blues, I-Drive Live. Real dates and
         ticket links from the venues.
       </p>

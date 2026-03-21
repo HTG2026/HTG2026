@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1523531294919-e4d64d4c2a53?w=600&q=80";
@@ -68,9 +67,8 @@ export default function TipsGuides() {
 function GuideCard({ guide }: { guide: (typeof GUIDES)[0] }) {
   const [imgSrc, setImgSrc] = useState(guide.image);
   return (
-    <Link
-      href="#"
-      className="group block overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-teal/30 hover:bg-teal/5 transition-all shadow-sm"
+    <div
+      className="group block overflow-hidden rounded-xl border border-slate-200 bg-white hover:border-teal/30 transition-all shadow-sm relative"
     >
       <div className="relative aspect-[16/9] overflow-hidden">
         <Image
@@ -81,9 +79,12 @@ function GuideCard({ guide }: { guide: (typeof GUIDES)[0] }) {
           sizes="(max-width: 640px) 100vw, 50vw"
           onError={() => setImgSrc(FALLBACK_IMAGE)}
         />
-        <div className="absolute top-2 left-2">
+        <div className="absolute top-2 left-2 flex gap-1.5">
           <span className="rounded-md bg-orange/90 px-2 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">
             {guide.tag}
+          </span>
+          <span className="rounded-md bg-slate-600/90 px-2 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">
+            Coming soon
           </span>
         </div>
       </div>
@@ -93,6 +94,6 @@ function GuideCard({ guide }: { guide: (typeof GUIDES)[0] }) {
         </h2>
         <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">{guide.desc}</p>
       </div>
-    </Link>
+    </div>
   );
 }

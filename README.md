@@ -1,6 +1,6 @@
 # Happy Traveler
 
-A Next.js travel site with Tailwind CSS. Includes pages for Home, Destinations, Blog, Flight Tracker, and Contact.
+A Next.js travel site with Tailwind CSS. Includes pages for Home, Explore, Theme Parks, Tips & Guides, Plan My Day, Map, Live Shows, and Contact.
 
 ## Deploy (one-time setup)
 
@@ -22,21 +22,35 @@ vercel --prod   # deploys and prints your URL
 
 ## Getting started
 
-Install dependencies and run the dev server:
+Install dependencies:
 
 ```bash
 npm install
-npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+**Run the site:**
+
+```bash
+# Option 1: Production (most reliable)
+npm run serve
+# Opens at http://localhost:3005
+
+# Option 2: Dev server (hot reload)
+npm run dev
+# Opens at http://localhost:3000 (or 3001/3002 if port is in use)
+```
+
+If the dev server shows errors (EMFILE, 404s, or webpack issues), use `npm run serve` instead.
 
 ## Pages
 
 - **Home** (`/`) – Landing and quick links
-- **Destinations** (`/destinations`) – Browse regions
-- **Blog** (`/blog`) – Travel stories and guides
-- **Flight Tracker** (`/flight-tracker`) – Track flights (UI ready; connect an API for live data)
+- **Explore** (`/explore`) – Restaurants, experiences, live events
+- **Theme Parks** (`/theme-parks`) – Disney, Universal, SeaWorld tips
+- **Tips & Guides** (`/tips-guides`) – Vacation guides (coming soon)
+- **Plan My Day** (`/plan-my-day`) – Chatbot itinerary builder
+- **Map** (`/map`) – GTA-style Orlando map
+- **Live Shows** (`/shows`) – Dr Phillips, Kia Center, Hard Rock
 - **Contact** (`/contact`) – Contact form
 
 ## Scripts

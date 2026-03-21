@@ -31,7 +31,7 @@ export default function GlobalError({
       <body className="antialiased min-h-screen flex flex-col items-center justify-center bg-htbg text-htdark font-sans p-6">
         <div className="max-w-md text-center space-y-4">
           <h1 className="text-xl font-bold">Something went wrong</h1>
-          <p className="text-white/70 text-sm">
+          <p className="text-slate-600 text-sm">
             {isChunkError
               ? "A cached version may be outdated. Try refreshing."
               : "An unexpected error occurred."}

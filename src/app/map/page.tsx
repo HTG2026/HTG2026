@@ -291,10 +291,10 @@ export default function MapPage() {
     <div className="min-h-screen bg-htbg">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="mb-10">
-          <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-teal mb-2">
+          <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
             Orlando Map
           </div>
-          <h1 className="font-display text-[clamp(2.2rem,4vw,3.5rem)] leading-tight text-htdark">
+          <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight text-htdark">
             <span className="text-htdark">GTA-Style</span>{" "}
             <span className="italic text-teal">Orlando</span>
           </h1>

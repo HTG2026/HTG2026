@@ -6,7 +6,7 @@ Internal recommendations to implement into site operations. Not for user display
 - [ ] Add location-specific landing pages (e.g. /orlando, /cocoa-beach) for long-tail keywords
 - [ ] Implement FAQ schema on tips & guides for rich snippets in search
 - [ ] Add breadcrumb navigation with BreadcrumbList JSON-LD
-- [ ] Create blog content around "Orlando Magical Dining 2025" and seasonal events
+- [ ] Create blog content around seasonal events and local experiences
 
 ## Conversion & Engagement
 - [ ] Add "Save to favorites" for places — persist in localStorage or user accounts
@@ -28,6 +28,6 @@ Internal recommendations to implement into site operations. Not for user display
 
 ## Monetization
 - [ ] Affiliate links for theme park tickets (Undercover Tourist, etc.)
-- [ ] Partner with Magical Dining restaurants for featured placements
+- [ ] Partner with local restaurants for featured placements
 - [ ] Scooter/rental affiliate programs
 - [ ] Sponsored "Local Pick" badges for verified partners

@@ -53,7 +53,7 @@ UPSTASH_REDIS_REST_URL=https://...
 UPSTASH_REDIS_REST_TOKEN=...
 ```
 
-**Without it:** APIs are called on each request (may hit rate limits).
+**Without it:** APIs are called on each request (may hit rate limits). Place photos also use Redis cache.
 
 ---
 
@@ -67,6 +67,43 @@ SCRAPECREATORS_API_KEY=your_key_here
 ```
 
 **Without it:** Curated TikTok URLs are used.
+
+---
+
+### Place Photos (Google, Yelp, Foursquare)
+
+Add any of these to get **real photos** for restaurants, bars, and attractions instead of stock photos.
+
+#### GOOGLE_PLACES_API_KEY
+**Why:** Real business photos from Google Places (highest priority).
+
+**Get it:** https://console.cloud.google.com/apis/credentials (enable Places API)
+
+```bash
+GOOGLE_PLACES_API_KEY=your_key_here
+```
+
+#### YELP_API_KEY
+**Why:** Real business photos from Yelp (free tier).
+
+**Get it:** https://www.yelp.com/developers/v3/manage_app
+
+```bash
+YELP_API_KEY=your_key_here
+```
+
+#### FOURSQUARE_API_KEY
+**Why:** Real venue photos from Foursquare Places API.
+
+**Get it:** https://foursquare.com/developers/signup
+
+```bash
+FOURSQUARE_API_KEY=your_key_here
+```
+
+**Order:** Google → Yelp → Foursquare. First available wins. Results cached in Redis for 7 days.
+
+**Without any:** Static/stock images from Unsplash and Wikimedia are used.
 
 ---
 

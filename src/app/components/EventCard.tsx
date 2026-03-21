@@ -43,7 +43,7 @@ export default function EventCard({
           <span className="rounded-md bg-orange/90 px-2 py-0.5 text-[0.6rem] font-bold text-white backdrop-blur-sm">
             {date}
           </span>
-          <span className="rounded-md bg-black/50 px-2 py-0.5 text-[0.6rem] font-medium text-white/90 backdrop-blur-sm">
+          <span className="rounded-md bg-black/60 px-2 py-0.5 text-[0.6rem] font-medium text-white/90 backdrop-blur-sm">
             {area}
           </span>
         </div>

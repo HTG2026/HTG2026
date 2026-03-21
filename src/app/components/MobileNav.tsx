@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { href: "/plan-my-day", label: "Plan My Day ✨" },
   { href: "/map", label: "Map" },
   { href: "/shows", label: "Live Shows" },
-  { href: "/flight-tracker", label: "Flight Tracker" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -71,7 +70,7 @@ export default function MobileNav() {
             role="navigation"
             aria-label="Main"
           >
-            <div className="py-2 px-4">
+            <div className="py-2 px-6">
               {NAV_LINKS.map((item) => (
                 <Link
                   key={item.href}

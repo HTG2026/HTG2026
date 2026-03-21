@@ -49,3 +49,29 @@ export async function setEvents(events: unknown[]): Promise<void> {
     // ignore
   }
 }
+
+const PLACE_PHOTO_KEY_PREFIX = "happy-traveler:place-photo:";
+
+function placePhotoCacheKey(name: string, area: string): string {
+  const slug = `${name}|${area}`.toLowerCase().replace(/[^a-z0-9|]/g, "-");
+  return `${PLACE_PHOTO_KEY_PREFIX}${slug}`;
+}
+
+export async function getPlacePhoto(name: string, area: string): Promise<string | null> {
+  if (!redis) return null;
+  try {
+    const data = await redis.get<string>(placePhotoCacheKey(name, area));
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+export async function setPlacePhoto(name: string, area: string, url: string): Promise<void> {
+  if (!redis) return;
+  try {
+    await redis.set(placePhotoCacheKey(name, area), url, { ex: 60 * 60 * 24 * 7 }); // 7 day TTL
+  } catch {
+    // ignore
+  }
+}

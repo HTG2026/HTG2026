@@ -1,6 +1,6 @@
 /**
- * Real Orlando data for Plan My Day — dining, nightlife, theme parks, activities.
- * Sourced from Visit Orlando, Magical Dining, local guides, and theme park resources.
+ * Real Orlando experiences for Plan My Day — dining, nightlife, theme parks, activities.
+ * Sourced from Visit Orlando, local guides, and theme park resources.
  */
 
 export interface ItineraryStop {
@@ -45,7 +45,7 @@ export const THEME_PARK_OPTIONS: ThemeParkOption[] = [
 ];
 
 export const DINING_OPTIONS = [
-  { name: "Christini's Ristorante Italiano", area: "Dr Phillips", detail: "Magical Dining · Italian fine dining", price: "$$$", emoji: "🍝", budget: ["150-300", "300plus"], bookUrl: "https://www.opentable.com/christinis-ristorante-italiano" },
+  { name: "Christini's Ristorante Italiano", area: "Dr Phillips", detail: "Italian fine dining · Editor's pick", price: "$$$", emoji: "🍝", budget: ["150-300", "300plus"], bookUrl: "https://www.opentable.com/christinis-ristorante-italiano" },
   { name: "The Capital Grille", area: "Dr Phillips", detail: "Dry-aged steaks · Wine cellar", price: "$$$", emoji: "🥩", budget: ["150-300", "300plus"], bookUrl: "https://www.opentable.com/the-capital-grille-millenia-orlando" },
   { name: "Prato", area: "Winter Park", detail: "Wood-fired Italian · MICHELIN Guide", price: "$$", emoji: "🍕", budget: ["50-150", "150-300"], bookUrl: "https://www.opentable.com/r/prato-winter-park" },
   { name: "The Ravenous Pig", area: "Winter Park", detail: "Farm-to-table · Craft beer", price: "$$", emoji: "🐷", budget: ["50-150", "150-300"], bookUrl: "https://resy.com/cities/orlando/the-ravenous-pig" },

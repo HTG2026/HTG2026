@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,6 +31,16 @@ export default function PlaceCard({
   reviewsUrl,
 }: PlaceCardProps) {
   const [imgSrc, setImgSrc] = useState(image);
+
+  // Fetch real photo from Google/Yelp/Foursquare APIs (cached in Redis)
+  useEffect(() => {
+    fetch(`/api/place-photo?name=${encodeURIComponent(name)}&area=${encodeURIComponent(area)}`)
+      .then((r) => r.json())
+      .then((data: { url?: string | null }) => {
+        if (data?.url) setImgSrc(data.url);
+      })
+      .catch(() => {});
+  }, [name, area]);
   const linkContent = (
     <>
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">

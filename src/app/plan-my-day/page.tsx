@@ -137,14 +137,14 @@ export default function PlanMyDay() {
   return (
     <div className="py-16 px-6 sm:px-12 max-w-4xl mx-auto bg-htbg">
       <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
-        AI-Powered
+        Chatbot-Powered
       </div>
       <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-tight mb-4 text-htdark">
         <span className="text-teal">Plan My Day</span>
       </h1>
       <p className="text-slate-600 text-lg max-w-xl mb-12">
-        Answer a few questions so we can build your perfect Central Florida day from real Orlando
-        spots.
+        Answer a few questions so we can curate your perfect Central Florida day from real Orlando
+        experiences. In 5 clicks or less.
       </p>
 
       {!done ? (

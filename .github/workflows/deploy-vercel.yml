@@ -2,8 +2,7 @@
 # Secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
 # See docs/VERCEL_NO_DEPLOY_FIX.md
 #
-# ORG_ID = Team ID from Vercel (often starts with team_)
-# PROJECT_ID = Project ID from Vercel (starts with prj_) — NOT the project name
+# Deploy logic lives in scripts/vercel-github-deploy.mjs (trim secrets, retry with --scope).
 
 name: Deploy to Vercel
 
@@ -33,24 +32,9 @@ jobs:
             exit 1
           fi
 
-      # Safe JSON (printf breaks if a secret contains " or \)
-      - name: Write .vercel/project.json
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          mkdir -p .vercel
-          node -e "const fs=require('fs');fs.writeFileSync('.vercel/project.json',JSON.stringify({orgId:process.env.VERCEL_ORG_ID,projectId:process.env.VERCEL_PROJECT_ID}))"
-
-      - name: Verify Vercel token
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: npx vercel@latest whoami --token "$VERCEL_TOKEN"
-
       - name: Deploy to production (build on Vercel)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          NEXT_TELEMETRY_DISABLED: "1"
-        run: npx vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+        run: node scripts/vercel-github-deploy.mjs

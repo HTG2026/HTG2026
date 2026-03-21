@@ -78,3 +78,9 @@ The workflow runs **`vercel deploy --prod`** so **Next.js builds on Vercel**, no
 - **Project ID** must match **Settings → General → Project ID** exactly.
 
 Open the failed GitHub run → expand **Deploy to production** for CLI output.
+
+### Still red after fixes?
+
+- **Re-copy secrets** in GitHub: select all → delete → paste again. Hidden **newlines** after the ID break JSON; the deploy script now **trims** them, but old workflows didn’t.
+- **Project ID** must start with **`prj_`**. If yours doesn’t, open Vercel → **Settings → General** and use the field labeled **Project ID**, not the name in the URL.
+- **Token**: create a **new** token at [vercel.com/account/tokens](https://vercel.com/account/tokens) and update `VERCEL_TOKEN` (old tokens can be revoked or lack access).

@@ -67,6 +67,10 @@ You may get **two** deployments per push after fixing Git. Then either:
 
 ## Build fails in Actions
 
-- Match **Node** to your app (workflow uses **20**).
-- Ensure **environment variables** used at build time exist in Vercel **Production** (the `vercel pull` step loads them when it succeeds).
-- Open the failed run → **build** log for the exact error.
+The workflow runs **`vercel deploy --prod`** so **Next.js builds on Vercel**, not in GitHub (same as a normal Git deploy). Check the deploy log in **Vercel** if GitHub only shows a generic error.
+
+- Ensure **Production** env vars exist in Vercel → Project → **Settings → Environment Variables**.
+- **Org ID** must be the **Team ID** (or personal team id from Vercel General settings), not the project slug.
+- **Project ID** must match **Settings → General → Project ID** exactly.
+
+Open the failed GitHub run → expand **Deploy to production** for CLI output.

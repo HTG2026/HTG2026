@@ -32,3 +32,5 @@ Your app **builds successfully** locally. To get it live:
 2. **Build fails?** Check the build logs in the Vercel dashboard. The app builds locally, so it’s usually an env var or framework detection issue.
 
 3. **404 on the site?** Use the exact URL Vercel gives you after deploy. Don’t guess the URL.
+
+4. **Pushes to GitHub but no new Vercel deployment?** See **[docs/VERCEL_NO_DEPLOY_FIX.md](VERCEL_NO_DEPLOY_FIX.md)** — reconnect Git in Vercel or add GitHub Actions secrets (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`).

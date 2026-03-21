@@ -1,5 +1,7 @@
 # Deploy Your Site — 3 Steps
 
+**Simpler options (fix Git hook, one secret, or laptop CLI):** [docs/SIMPLE_DEPLOY.md](docs/SIMPLE_DEPLOY.md)
+
 Your app **builds successfully** locally. To get it live:
 
 ---

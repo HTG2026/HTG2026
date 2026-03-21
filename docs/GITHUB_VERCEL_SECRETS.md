@@ -1,5 +1,7 @@
 # Fix GitHub → Vercel secrets (when Actions stays red)
 
+**Simpler:** [SIMPLE_DEPLOY.md](SIMPLE_DEPLOY.md) — reconnect Vercel to GitHub (no Actions), or commit `.vercel/project.json` and use **only** `VERCEL_TOKEN`.
+
 Use **exactly three** repository secrets. Wrong names or wrong values = deploy fails.
 
 **Where:** GitHub → repo **HTG2026/HTG2026** → **Settings** → **Secrets and variables** → **Actions** → **Repository secrets**

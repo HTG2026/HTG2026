@@ -1,8 +1,10 @@
-# Deploys to Vercel when Git webhooks don't fire.
-# Secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
-# See docs/VERCEL_NO_DEPLOY_FIX.md
+# Optional fallback when Vercel ↔ GitHub Git integration is broken.
+# Simplest fix: reconnect Git in Vercel (see docs/SIMPLE_DEPLOY.md) — then you can delete this file.
 #
-# Deploy logic lives in scripts/vercel-github-deploy.mjs (trim secrets, retry with --scope).
+# Secrets:
+#   • VERCEL_TOKEN (required)
+#   • If .vercel/project.json is committed: nothing else.
+#   • Else: VERCEL_ORG_ID + VERCEL_PROJECT_ID
 
 name: Deploy to Vercel
 
@@ -25,14 +27,27 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Require Vercel secrets
+      - name: Require VERCEL_TOKEN
         run: |
-          if [ -z "${{ secrets.VERCEL_TOKEN }}" ] || [ -z "${{ secrets.VERCEL_ORG_ID }}" ] || [ -z "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
-            echo "::error::Add GitHub secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID — see docs/VERCEL_NO_DEPLOY_FIX.md"
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "::error::Add secret VERCEL_TOKEN — or fix Git on Vercel (docs/SIMPLE_DEPLOY.md)"
             exit 1
           fi
 
-      - name: Deploy to production (build on Vercel)
+      - name: Require project link (file or secrets)
+        run: |
+          if [ -f .vercel/project.json ]; then
+            echo "Using committed .vercel/project.json"
+            exit 0
+          fi
+          if [ -n "${{ secrets.VERCEL_ORG_ID }}" ] && [ -n "${{ secrets.VERCEL_PROJECT_ID }}" ]; then
+            echo "Using VERCEL_ORG_ID + VERCEL_PROJECT_ID secrets"
+            exit 0
+          fi
+          echo "::error::Commit .vercel/project.json (npx vercel link) OR add VERCEL_ORG_ID + VERCEL_PROJECT_ID — docs/SIMPLE_DEPLOY.md"
+          exit 1
+
+      - name: Deploy to production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

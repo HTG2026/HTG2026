@@ -26,8 +26,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# vercel
-.vercel
+# vercel — project.json may be committed (ids only); ignore the rest
+.vercel/*
+!.vercel/project.json
 
 # typescript
 *.tsbuildinfo

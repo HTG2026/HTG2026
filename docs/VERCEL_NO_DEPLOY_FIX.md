@@ -26,9 +26,13 @@ This repo includes `.github/workflows/deploy-vercel.yml`. It deploys on every pu
 
 ### 2. Get Org ID and Project ID
 
+**Important:** Use the **IDs**, not the project name or URL slug.
+
 1. Vercel → your project → **Settings** → **General**.
-2. Copy **Project ID**.
-3. Under **Team** (or your account), open **Settings** → copy **Team ID** (this is **Org ID** for personal accounts it may show under General as well).
+2. Copy **Project ID** — must look like **`prj_xxxxxxxx`** (GitHub secret `VERCEL_PROJECT_ID`). If you only see a short name, you’re on the wrong field.
+3. **Team ID** (Org ID) — same **General** page often shows **Team ID** as **`team_xxxxxxxx`**, or: top-left team menu → **Team Settings** → **Team ID**. GitHub secret `VERCEL_ORG_ID`.
+
+If **`vercel whoami`** passes in Actions but deploy fails, the Project ID or Team ID almost always doesn’t match the project you think is linked.
 
 Alternatively, on your machine (after `npx vercel link`):
 

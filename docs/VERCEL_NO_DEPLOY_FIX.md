@@ -1,5 +1,7 @@
 # Vercel: no new deployment after `git push`
 
+**If Actions fails and you think it’s the secrets:** use the step-by-step **[GITHUB_VERCEL_SECRETS.md](GITHUB_VERCEL_SECRETS.md)** (exact names + where to copy each value).
+
 If **GitHub shows your latest commit** but **Vercel has no new deployment**, the link between GitHub and Vercel is broken or misconfigured.
 
 ---

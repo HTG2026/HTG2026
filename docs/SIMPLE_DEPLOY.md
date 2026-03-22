@@ -27,3 +27,5 @@ If you use the CLI a lot, run **`npx vercel link`** once and commit **`.vercel/p
 ---
 
 **Summary:** Use **(1)** for normal workflow. Use **(2)** for manual deploys.
+
+**If it still fails:** **[VERCEL_STILL_BROKEN.md](VERCEL_STILL_BROKEN.md)** (checklist + fresh import + CLI test).

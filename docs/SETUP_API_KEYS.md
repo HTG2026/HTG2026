@@ -58,7 +58,7 @@ UPSTASH_REDIS_REST_TOKEN=...
 ---
 
 ### SCRAPECREATORS_API_KEY
-**Why:** Real-time TikTok hashtag scraping for #OrlandoFlorida.
+**Why:** TikTok carousel — merges **keyword** search (“what to do in Orlando”, “things to do Orlando Florida”, etc.) sorted by **most-liked**, plus activity hashtags (`thingstodoinorlando`, `visitorlando`, …). Picks top videos by plays + likes.
 
 **Get it:** https://scrapecreators.com/
 
@@ -66,7 +66,7 @@ UPSTASH_REDIS_REST_TOKEN=...
 SCRAPECREATORS_API_KEY=your_key_here
 ```
 
-**Without it:** Curated TikTok URLs are used.
+**Without it:** Curated “what to do in Orlando” style TikTok URLs are used (`src/data/tiktok-fallbacks.ts`).
 
 ---
 

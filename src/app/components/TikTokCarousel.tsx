@@ -2,13 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-
-const FALLBACK_URLS = [
-  "https://www.tiktok.com/@disneyparks/video/7387826342689099039",
-  "https://www.tiktok.com/@see.wdw/video/7414624446197075231",
-  "https://www.tiktok.com/@sobrizzle/video/7369772085859732778",
-  "https://www.tiktok.com/@thatchipperbunch/video/7444188965017554206",
-];
+import { TIKTOK_FALLBACK_URLS } from "@/data/tiktok-fallbacks";
 
 function renderTikTokEmbeds(container: HTMLElement | null) {
   if (!container) return;
@@ -19,23 +13,23 @@ function renderTikTokEmbeds(container: HTMLElement | null) {
 }
 
 export default function TikTokCarousel() {
-  const [urls, setUrls] = useState<string[]>(FALLBACK_URLS);
+  const [urls, setUrls] = useState<string[]>(TIKTOK_FALLBACK_URLS);
   const [embedReady, setEmbedReady] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/tiktok-feed")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: { urls?: string[] }) => {
         if (data?.urls?.length) setUrls(data.urls);
       })
       .catch(() => {});
   }, []);
 
+  // Always call TikTok's render after the script loads — including when we only
+  // have fallbacks (Redis empty / no API key). Skipping that left "Watch on TikTok" links only.
   useEffect(() => {
     if (!embedReady || urls.length === 0) return;
-    const key = urls.join("|");
-    if (key === FALLBACK_URLS.join("|")) return;
     const id = requestAnimationFrame(() => {
       renderTikTokEmbeds(containerRef.current);
     });
@@ -48,19 +42,22 @@ export default function TikTokCarousel() {
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="text-[.6rem] font-extrabold tracking-[3px] uppercase text-orange mb-2">
-              TikTok · #OrlandoFlorida
+              TikTok · What to do in Orlando
             </div>
             <h2 className="font-serif text-[clamp(1.6rem,2.5vw,2.2rem)] font-black italic leading-tight text-htdark">
-              Hacks going <span className="not-italic">viral</span>
+              Ideas & <span className="not-italic">inspo</span> from TikTok
             </h2>
+            <p className="text-sm text-slate-600 mt-2 max-w-lg">
+              Top-liked videos about things to do, day trips, and local picks — refreshed on a schedule when our scraper runs.
+            </p>
           </div>
           <a
-            href="https://www.tiktok.com/search?q=orlando+florida"
+            href="https://www.tiktok.com/search?q=what+to+do+in+Orlando"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[.76rem] font-semibold text-slate-600 hover:text-teal transition-colors hidden sm:block"
+            className="text-[.76rem] font-semibold text-slate-600 hover:text-teal transition-colors hidden sm:block shrink-0"
           >
-            Watch on TikTok →
+            Search on TikTok →
           </a>
         </div>
 

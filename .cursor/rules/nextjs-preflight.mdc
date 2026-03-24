@@ -1,0 +1,35 @@
+---
+description: Run Next.js verify before sharing localhost; avoid stale .next chunk errors
+alwaysApply: true
+---
+
+# Happy Traveler — preflight before “try this link”
+
+## When this applies
+
+After **any** change under `src/`, `next.config.*`, or dependencies — before telling the user to open **http://localhost:3000** (or any local URL) or saying the app is ready:
+
+1. From the **happy-traveler** directory run:
+   ```bash
+   npm run verify
+   ```
+   This runs `clean` (removes `.next` and `node_modules/.cache`) then `next build`, which catches broken webpack output, missing chunks (`Cannot find module './NNN.js'`), TypeScript, and lint issues tied to the production bundle.
+
+2. Only if **`npm run verify` exits 0**, start or mention the dev server. If the user already hit chunk errors, prefer:
+   ```bash
+   npm run dev:fresh
+   ```
+   (clean + `next dev`) instead of `npm run dev` alone.
+
+## Do not
+
+- Do not recommend “just refresh” after substantive edits without a successful `verify` (or at least `npm run clean && npm run dev`) when `.next` may be inconsistent.
+- Do not run **`next build`** and **`next dev`** against the same project in parallel without a **clean** in between — that pattern often causes missing `*.js` chunk runtime errors.
+
+## Scripts reference
+
+| Script        | Purpose                                      |
+| ------------- | -------------------------------------------- |
+| `npm run clean`   | Remove `.next` + `node_modules/.cache`   |
+| `npm run verify`  | **clean + production build** (full gate)   |
+| `npm run dev:fresh` | clean + dev server (reset broken dev)  |

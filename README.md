@@ -42,6 +42,14 @@ npm run dev
 
 If the dev server shows errors (EMFILE, 404s, or webpack issues), use `npm run serve` instead.
 
+**Stale build / `Cannot find module './NNN.js'`:** Your `.next` folder is out of sync. Run:
+
+```bash
+npm run verify
+```
+
+That wipes `.next`, rebuilds, and confirms the app compiles. Then start dev with `npm run dev` or `npm run dev:fresh` (clean + dev in one step).
+
 ## Pages
 
 - **Home** (`/`) – Landing and quick links
@@ -55,14 +63,17 @@ If the dev server shows errors (EMFILE, 404s, or webpack issues), use `npm run s
 
 ## Scripts
 
-- `npm run dev` – Start dev server (Turbopack)
+- `npm run verify` – **Clean + production build** (use before trusting localhost; catches missing webpack chunks and compile errors)
+- `npm run clean` – Remove `.next` and `node_modules/.cache`
+- `npm run dev:fresh` – Clean then start dev (good reset after chunk errors)
+- `npm run dev` – Start dev server
 - `npm run build` – Build for production
 - `npm run start` – Start production server
 - `npm run lint` – Run ESLint
 
 ## TikTok Carousel Scraper
 
-The home page TikTok carousel updates every **6 hours** via a Vercel cron job.
+The home page carousel shows **“what to do in Orlando”** style TikToks: ScrapeCreators **keyword** search (most-liked) + **hashtag** feeds, merged and ranked. Updates every **6 hours** via Vercel cron.
 
 ### Setup (for live scraping)
 

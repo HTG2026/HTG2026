@@ -64,6 +64,7 @@ That wipes `.next`, rebuilds, and confirms the app compiles. Then start dev with
 ## Scripts
 
 - `npm run verify` – **Clean + production build** (use before trusting localhost; catches missing webpack chunks and compile errors)
+- `npm run check:vercel` – **Ping your real production URL** (set `NEXT_PUBLIC_SITE_URL` first — see [docs/VERIFY_VERCEL_CONNECTION.md](docs/VERIFY_VERCEL_CONNECTION.md))
 - `npm run clean` – Remove `.next` and `node_modules/.cache`
 - `npm run dev:fresh` – Clean then start dev (good reset after chunk errors)
 - `npm run dev` – Start dev server

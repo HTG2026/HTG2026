@@ -15,6 +15,7 @@
     "deploy": "vercel --prod",
     "share": "ssh -R 80:localhost:3000 nokey@localhost.run",
     "lint": "next lint",
+    "check:vercel": "node scripts/check-vercel-production.cjs",
     "postinstall": "node scripts/patch-next-network.js"
   },
   "dependencies": {

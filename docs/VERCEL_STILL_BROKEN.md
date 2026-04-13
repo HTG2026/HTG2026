@@ -43,7 +43,7 @@ If unsure: **Disconnect** → **Connect** again → pick the repo → **main**.
 
 ## 5) Cron jobs + Hobby plan
 
-`vercel.json` defines **cron** routes. On **Hobby**, cron may be limited; if the log mentions **cron** or **plan**, either **upgrade to Pro** or temporarily remove the `"crons"` block from `vercel.json`, commit, push, and redeploy.
+`vercel.json` defines **cron** routes. On **Hobby**, each cron may run **at most once per day** (schedules like `0 */6 * * *` will fail deploy). The repo uses **daily** UTC times; for more frequent runs, **upgrade to Pro** or use an external scheduler (e.g. GitHub Actions) hitting your cron URL.
 
 ---
 

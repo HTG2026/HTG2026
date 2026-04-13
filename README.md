@@ -74,7 +74,7 @@ That wipes `.next`, rebuilds, and confirms the app compiles. Then start dev with
 
 ## TikTok Carousel Scraper
 
-The home page carousel shows **“what to do in Orlando”** style TikToks: ScrapeCreators **keyword** search (most-liked) + **hashtag** feeds, merged and ranked. Updates every **6 hours** via Vercel cron.
+The home page carousel shows **“what to do in Orlando”** style TikToks: ScrapeCreators **keyword** search (most-liked) + **hashtag** feeds, merged and ranked. On **Vercel Hobby**, crons run **once per day** (see `vercel.json`). Upgrade to **Pro** for more frequent schedules, or trigger `GET /api/cron/tiktok-scrape` manually.
 
 ### Setup (for live scraping)
 
@@ -84,7 +84,7 @@ The home page carousel shows **“what to do in Orlando”** style TikToks: Scra
 
 3. **Eventbrite** (optional) – Add `EVENTBRITE_TOKEN` for live Orlando events. Get a token at [eventbrite.com/platform/api](https://www.eventbrite.com/platform/api/).
 
-4. **Deploy to Vercel** – The cron runs automatically at `0 */6 * * *` (every 6 hours).
+4. **Deploy to Vercel** – Crons run daily (UTC) per `vercel.json` (Hobby plan limit). **Pro** allows shorter intervals.
 
 ### Manual trigger
 

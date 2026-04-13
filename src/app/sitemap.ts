@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site-url";
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.vercel.app";
+const BASE = getSiteUrl();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

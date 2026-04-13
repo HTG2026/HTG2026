@@ -1,9 +1,12 @@
 # Verify Vercel ↔ GitHub is live
 
-## What we can check from the repo
+## How the app picks the site URL
 
-- **Default fallback in code** (`NEXT_PUBLIC_SITE_URL` unset): `https://happy-traveler.vercel.app`  
-  That hostname often returns **`DEPLOYMENT_NOT_FOUND`** unless *your* project is assigned that exact name. **Do not assume** a `.vercel.app` URL — use the one Vercel shows after deploy ([see VERCEL_STILL_BROKEN.md](./VERCEL_STILL_BROKEN.md)).
+1. **`NEXT_PUBLIC_SITE_URL`** — optional; use for a **custom domain** or a stable URL you choose in Vercel.
+2. **`VERCEL_URL`** — set automatically on every Vercel deployment. The app uses `https://${VERCEL_URL}` when the env above is unset, so metadata/sitemap match **this** deployment (no guessed hostname).
+3. **Local:** `http://localhost:3000` when neither is set.
+
+You can still set `NEXT_PUBLIC_SITE_URL` in Vercel to your production custom domain so canonical URLs stay consistent across preview vs production if needed.
 
 ## Automated check (after you set the real URL)
 

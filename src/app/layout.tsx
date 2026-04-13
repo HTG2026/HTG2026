@@ -7,8 +7,9 @@ import ChunkLoadErrorBoundary from "./ChunkLoadErrorBoundary";
 import ChunkLoadRecoveryScript from "./components/ChunkLoadRecoveryScript";
 import WeatherWidget from "./components/WeatherWidget";
 import MobileNav from "./components/MobileNav";
+import { getSiteUrl } from "@/lib/site-url";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://happy-traveler.vercel.app";
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

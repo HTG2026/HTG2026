@@ -1,0 +1,115 @@
+{
+  "badge": {
+    "avatars": ["👩", "👨", "👩", "👦"],
+    "label": "Real Orlando tips from locals"
+  },
+
+  "hero": {
+    "titleLines": [
+      { "text": "The spots.", "color": "htdark" },
+      { "text": "The hacks.", "color": "teal" },
+      { "text": "The real Orlando.", "color": "orange" }
+    ],
+    "subtitle": "Real park hacks, hidden restaurants, and local knowledge — plus a chatbot that curates your perfect day based on your budget and preferences. In 5 clicks or less.",
+    "searchPlaceholder": "Restaurants, experiences, Disney hacks…",
+    "locations": ["Orlando, FL", "Cocoa Beach", "Tampa"],
+    "findSpotsLabel": "Find Spots"
+  },
+
+  "heroTags": [
+    "🎢 Disney Hacks",
+    "🍹 Hidden Bars",
+    "🌮 Local Eats",
+    "🐊 Airboat Tours",
+    "🌙 Nightlife",
+    "🛺 Scooter Rental"
+  ],
+
+  "ticker": [
+    { "num": "40+", "txt": "curated spots" },
+    { "num": "5", "txt": "clicks to plan" },
+    { "num": "100%", "txt": "locals-only picks" },
+    { "num": "Free", "txt": "to use" }
+  ],
+
+  "trending": {
+    "kicker": "Trending Now",
+    "badge": "EDITOR'S PICKS",
+    "heading": "Top picks in",
+    "headingAccent": "Central Florida",
+    "seeAll": "See all →"
+  },
+
+  "trendingPlaceNames": [
+    "Christini's Ristorante Italiano",
+    "The Ravenous Pig",
+    "Kennedy Space Center",
+    "Boggy Creek Airboat Adventures",
+    "Domu",
+    "Lake Eola Park"
+  ],
+
+  "categoryStrip": [
+    { "label": "🗺️ Everything", "href": "/explore" },
+    { "label": "🎢 Park Hacks", "href": "/explore" },
+    { "label": "🍽️ Local Eats", "href": "/explore" },
+    { "label": "🌙 Nightlife", "href": "/explore" },
+    { "label": "🎭 Live Shows", "href": "/shows" },
+    { "label": "🏖️ Day Trips", "href": "/explore" },
+    { "label": "🛺 Rentals", "href": "/explore" },
+    { "label": "📍 Hidden Gems", "href": "/explore" },
+    { "label": "🎶 Live Events", "href": "/explore" }
+  ],
+
+  "exploreSection": {
+    "kicker": "Explore",
+    "heading": "Plan your",
+    "headingAccent": "Central Florida",
+    "headingSuffix": "trip"
+  },
+
+  "quickLinks": [
+    {
+      "href": "/explore",
+      "emoji": "🗺️",
+      "title": "Explore",
+      "body": "Restaurants, experiences, museums, bars and activities.",
+      "highlight": false
+    },
+    {
+      "href": "/theme-parks",
+      "emoji": "🎢",
+      "title": "Theme Parks",
+      "body": "Disney, Universal, SeaWorld & Busch Gardens tips.",
+      "highlight": false
+    },
+    {
+      "href": "/tips-guides",
+      "emoji": "📝",
+      "title": "Tips & Guides",
+      "body": "Vacation tips, Central Florida focus, surrounding areas.",
+      "highlight": false
+    },
+    {
+      "href": "/plan-my-day",
+      "emoji": "✨",
+      "title": "Plan My Day",
+      "body": "Chatbot curates your day by party size, interests & budget. In 5 clicks or less.",
+      "highlight": true
+    },
+    {
+      "href": "/shows",
+      "emoji": "🎭",
+      "title": "Live Shows",
+      "body": "Dr Phillips, Kia Center, Hard Rock, I-Drive Live.",
+      "highlight": false
+    },
+    {
+      "href": "/contact",
+      "emoji": "✉️",
+      "title": "Contact",
+      "body": "Questions? We're here to help.",
+      "highlight": false
+    }
+  ]
+}

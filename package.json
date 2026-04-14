@@ -16,13 +16,16 @@
     "share": "ssh -R 80:localhost:3000 nokey@localhost.run",
     "lint": "next lint",
     "check:vercel": "node scripts/check-vercel-production.cjs",
+    "sanity:schemas": "sanity schemas deploy",
     "postinstall": "node scripts/patch-next-network.js"
   },
   "dependencies": {
     "@upstash/redis": "^1.37.0",
     "next": "^15.0.0",
+    "next-sanity": "^12.2.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sanity": "^5.20.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

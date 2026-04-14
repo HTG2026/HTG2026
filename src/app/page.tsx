@@ -2,7 +2,10 @@ import Link from "next/link";
 import TikTokCarousel from "./components/TikTokCarousel";
 import PlaceCard from "./components/PlaceCard";
 import { PLACES } from "@/data/places";
-import home from "../../content/home.json";
+import { getHomeContent } from "@/lib/get-home-content";
+
+/** Revalidate homepage so Sanity CMS edits show up without redeploying. */
+export const revalidate = 300;
 
 const TITLE_COLOR: Record<string, string> = {
   htdark: "text-htdark",
@@ -10,7 +13,8 @@ const TITLE_COLOR: Record<string, string> = {
   orange: "text-orange",
 };
 
-export default function Home() {
+export default async function Home() {
+  const home = await getHomeContent();
   const trendingPlaces = PLACES.filter((p) =>
     home.trendingPlaceNames.includes(p.name)
   ).slice(0, 6);

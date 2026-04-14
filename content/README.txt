@@ -1,5 +1,9 @@
-Edit home.json to change homepage text (hero, ticker, quick links, etc.).
-Save valid JSON — broken JSON will fail the build.
-Commit and push to GitHub; Vercel deploys automatically.
+OPTION A — No code (recommended): see docs/SETUP_SANITY_CMS.md
+  Visual editor at sanity.io; homepage loads from Sanity when env vars are set.
 
-For restaurants and spots site-wide, edit src/data/places.ts (or ask your dev to add more JSON files).
+OPTION B — Edit JSON files:
+  Edit content/home.json (hero, ticker, quick links, etc.).
+  Valid JSON only — broken JSON breaks the build.
+  Commit and push; Vercel deploys automatically.
+
+Places / Explore cards: src/data/places.ts
